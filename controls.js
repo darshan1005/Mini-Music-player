@@ -98,6 +98,27 @@ wavesurfer.on('finish', () => {
     }
 });
 
+document.addEventListener('keydown', (event) => {
+    const key = event.key;
+
+    if (key === 'ArrowRight') { // Right arrow key
+        nextSongBtn.click();
+    } else if (key === 'ArrowLeft') { // Left arrow key
+        prevSongBtn.click();
+    } else if (key === 'ArrowUp') { // Up arrow key
+        volumeIncreBtn.click();
+    } else if (key === 'ArrowDown') { // Down arrow key
+        volumeDecreBtn.click();
+    } else if (key === 'Enter') { // Enter key
+        playPauseBtn.click();
+    } else if (key == "m" || key == "M"){
+        volumeIcon.click(); // key m or M
+    } else {
+        console.log(`Key pressed: ${key}`);
+    }
+});
+
+
 nextSongBtn.addEventListener('click', () => {
     playNextSong();
 });
@@ -278,13 +299,4 @@ function playNextShuffledSong() {
 
 document.querySelector('.shuffle-btn').addEventListener('click', toggleShuffle);
 
-// Keyboard event listener for 'Enter' key
-document.addEventListener('keyup', (event) => {
-    const keyCode = event.keyCode || event.which;
-
-    if (keyCode === 13) { // Enter key
-        console.log('Enter key pressed');
-        playPauseBtn.click();
-    }
-});
 
