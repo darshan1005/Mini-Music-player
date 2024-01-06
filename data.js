@@ -30,12 +30,6 @@ let allmusic = [
         src: 'music/Enno Enno'
     }, 
     {
-        name: 'Kurchi madathapeti',
-        artist: 'Thaman',
-        img: 'images/GK',
-        src: 'music/Kurchi Madathapetti'
-    },
-    {
         name: 'Despacito',
         artist: 'Luis Fonsi',
         img: 'images/despacito',
