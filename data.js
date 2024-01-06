@@ -41,4 +41,10 @@ let allmusic = [
         img: 'images/people',
         src: 'music/People'
     },
+    {
+        name: 'High school',
+        artist: 'Nicki Minaj',
+        img: 'images/High-school',
+        src: 'music/High School'
+    },
 ]
