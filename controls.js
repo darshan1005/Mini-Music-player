@@ -91,8 +91,10 @@ wavesurfer.on('finish', () => {
 
     if (shouldRepeat) {
         wavesurfer.play();
+        updatePlayPauseButton()
     } else {
         playNextSong();
+        updatePlayPauseButton()
     }
 });
 
@@ -204,7 +206,6 @@ function updateButtonState(buttonSelector, isActive) {
     }
 }
 
-
 function resetPlaylistOrder() {
     console.log("🔄 Resetting playlist order");
     allmusic.sort((a, b) => a.index - b.index);
@@ -213,32 +214,9 @@ function resetPlaylistOrder() {
     wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
 }
 
-function playNextSong() {
-    music_index++;
-    music_index > allmusic.length ? music_index = 1 : music_index = music_index;
-    loadMusic(music_index);
-    wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
-    wavesurfer.setTime(0);
-
-    if (playPauseBtn.classList.contains('play')) {
-        playPauseBtn.classList.remove('play');
-        playPauseBtn.classList.add('pause');
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        musicImg.classList.add('rotate');
-    }
-
-    if (canAutoPlay) {
-        wavesurfer.once('ready', () => {
-            if (shouldRepeat) {
-                wavesurfer.play();
-            } else {
-                wavesurfer.playNext();
-            }
-        });
-    }
-}
-
 wavesurfer.on('finish', playNextSong);
+
+// suffle
 
 let shuffle = false;
 
@@ -260,7 +238,6 @@ function shufflePlaylist() {
         [allmusic[i], allmusic[j]] = [allmusic[j], allmusic[i]];
     }
 }
-document.querySelector('.shuffle-btn').addEventListener('click', toggleShuffle);
 
 function playShuffledSong() {
     console.log("Playing shuffled song");
@@ -270,10 +247,44 @@ function playShuffledSong() {
 
     wavesurfer.on('finish', () => {
         if (shuffle) {
-            playNextSong();
+            playNextShuffledSong();
         }
     });
 
     updatePlayPauseButton();
     wavesurfer.play();
 }
+
+function playNextShuffledSong() {
+    music_index++;
+    music_index > allmusic.length ? music_index = 1 : music_index = music_index;
+    loadMusic(music_index);
+    wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
+    wavesurfer.setTime(0);
+
+    if (playPauseBtn.classList.contains('play')) {
+        playPauseBtn.classList.remove('play');
+        playPauseBtn.classList.add('pause');
+        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        musicImg.classList.add('rotate');
+    }
+
+    if (canAutoPlay) {
+        wavesurfer.once('ready', () => {
+            wavesurfer.play();
+        });
+    }
+}
+
+document.querySelector('.shuffle-btn').addEventListener('click', toggleShuffle);
+
+// Keyboard event listener for 'Enter' key
+document.addEventListener('keyup', (event) => {
+    const keyCode = event.keyCode || event.which;
+
+    if (keyCode === 13) { // Enter key
+        console.log('Enter key pressed');
+        playPauseBtn.click();
+    }
+});
+

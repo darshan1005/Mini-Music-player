@@ -6,6 +6,12 @@ let allmusic = [
         src: 'music/By our love'
     },
     {
+        name: 'Let her go',
+        artist: 'passenger',
+        img: 'images/let-her-go',
+        src: 'music/Let Her Go'
+    },
+    {
         name: 'Gaaju Bomma',
         artist: 'Hesham Abdul Wahab',
         img: 'images/hi-nanna',
