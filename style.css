@@ -108,10 +108,33 @@ body {
     font-size: 15px;
 }
 
+/* silder */
+.container .waveform-box #song-slider {
+    all: unset;
+    height: 3px;
+    width: 235px;
+    background: rgba(151, 168, 255, 0.213);
+    margin-left: -6px;
+    cursor: pointer;
+    display: flex;
+    margin: 0 auto;
+}
+
+.container .waveform-box #song-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 2px;
+    width: 10px;
+    background: #2600ffb1;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+/* wavesurfer */
 .container .waveform-box {
     position: absolute;
     top: 195px;
-    padding: 40px;
+    padding: 65px 35px 35px ;
     height: 100px;
     display: flex;
     align-items: center;
@@ -123,6 +146,7 @@ body {
     font-size: 13px;
     color: #31456A;
     padding-right: 10px;
+    margin-top: 2.5rem;
 }
 
 .container .waveform-box .total-time {
@@ -131,10 +155,11 @@ body {
     font-size: 13px;
     color: #31456A;
     padding-left: 10px;
+    margin-top: 2.5rem;
 }
 
 .container .waveform-box #waveform {
-    height: 92px;
+    height: 102px;
     width: 235px;
 }
 
@@ -152,6 +177,8 @@ body {
     }
 }
 
+/* volume box */
+
 .container .volume-box {
     height: 60px;
     width: 300px;
@@ -161,7 +188,7 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    top: 280px;
+    top: 290px;
     bottom: 20px;
     padding-right: 0px;
 }

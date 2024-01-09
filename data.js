@@ -47,4 +47,10 @@ let allmusic = [
         img: 'images/High-school',
         src: 'music/High School'
     },
+    {
+        name: 'i just wanna be your',
+        artist: 'Arctic Monkeys',
+        img: 'images/wann-be-yours',
+        src: 'music/I-Wanna-Be-Yours'
+    },
 ]

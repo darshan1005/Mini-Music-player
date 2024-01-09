@@ -16,8 +16,8 @@
 <body>
     <div class="container">
         <div class="music-info">
-            <h4 class="artist-name">Artist: <span class="artist">Song-artist</span></h4>
             <h4 class="song-name">Song: <span class="song">Song-name</span></h4>
+            <h4 class="artist-name">Artist: <span class="artist">Song-artist</span></h4>
             <div class="download-btn">
                 <button class="download-button">
                     <i class="fa-solid fa-download"></i> Download
@@ -32,7 +32,9 @@
         </div>
         <div class="waveform-box">
             <span class="current-time">0:00</span>
-            <div id="waveform"></div>
+            <div id="waveform">
+                <input type="range" for= "waveform" id="song-slider" min="0" max="100" step="0.1" value="0">
+            </div>
             <span class="total-time">0:00</span>
         </div>
         <div class="volume-box">

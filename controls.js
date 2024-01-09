@@ -21,7 +21,21 @@ var wavesurfer = WaveSurfer.create({
     barWidth: 2,
     responsive: true,
     height: 90,
-    barRadius: 2
+    barRadius: 2,
+});
+
+var songSlider = document.getElementById('song-slider');
+
+wavesurfer.on('ready', function () {
+    songSlider.max = wavesurfer.getDuration();
+});
+
+wavesurfer.on('audioprocess', function () {
+    songSlider.value = wavesurfer.getCurrentTime();
+});
+
+songSlider.addEventListener('input', function () {
+    wavesurfer.seekTo(songSlider.value / wavesurfer.getDuration());
 });
 
 wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
