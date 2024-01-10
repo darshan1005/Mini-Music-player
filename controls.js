@@ -50,7 +50,7 @@ let loadMusic = (index) => {
     artistName.innerHTML = `${allmusic[music_index - 1].artist}`;
     songName.innerHTML = `${allmusic[music_index - 1].name}`;
     musicImg.src = `${allmusic[music_index - 1].img}.jpeg`;
-    
+
     wavesurfer.once('ready', () => {
         playPauseBtn.classList.remove('pause');
         playPauseBtn.classList.add('play');

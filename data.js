@@ -13,7 +13,7 @@ let allmusic = [
     },
     {
         name: 'Gaaju Bomma',
-        artist: 'Hesham Abdul Wahab',
+        artist: 'Hesham',
         img: 'images/hi-nanna',
         src: 'music/Gaaju bomma'
     },
@@ -48,19 +48,19 @@ let allmusic = [
         src: 'music/High School'
     },
     {
-        name: 'i just wanna be your',
-        artist: 'Arctic Monkeys',
+        name: 'I just wanna be your',
+        artist: 'ArcticMonkeys',
         img: 'images/wann-be-yours',
         src: 'music/I-Wanna-Be-Yours'
     },
     {
-        name: 'shape of you',
+        name: 'Shape of you',
         artist: 'Edsheern',
         img: 'images/shape-of-you',
         src: 'music/shape-of-you'
     },
     {
-        name: 'shivers',
+        name: 'Shivers',
         artist: 'Edsheern',
         img: 'images/Shivers-Art',
         src: 'music/shivers'
