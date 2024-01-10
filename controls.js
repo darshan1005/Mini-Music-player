@@ -44,11 +44,42 @@ window.addEventListener('DOMContentLoaded', () => {
     loadMusic(music_index);
 });
 
-let loadMusic = () => {
+let loadMusic = (index) => {
+    music_index = index;
+    wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
     artistName.innerHTML = `${allmusic[music_index - 1].artist}`;
     songName.innerHTML = `${allmusic[music_index - 1].name}`;
     musicImg.src = `${allmusic[music_index - 1].img}.jpeg`;
+    
+    if (playPauseBtn.classList.contains('play')) {
+        playPauseBtn.classList.remove('play');
+        playPauseBtn.classList.add('pause');
+        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        musicImg.classList.add('rotate');
+    }
+
+    wavesurfer.once('ready', () => {
+        playPauseBtn.classList.remove('pause');
+        playPauseBtn.classList.add('play');
+        playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        musicImg.classList.remove('rotate');
+        wavesurfer.play();
+    });
 };
+
+window.addEventListener('DOMContentLoaded', () => {
+    loadMusic(music_index);
+    const songList = document.querySelector('.song-list ul');
+    allmusic.forEach((song, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = song.name;
+        listItem.dataset.index = index + 1;
+        listItem.addEventListener('click', () => {
+            loadMusic(index + 1);
+        });
+        songList.appendChild(listItem);
+    });
+});
 
 playPauseBtn.addEventListener('click', () => {
     if (wavesurfer.isPlaying()) {
@@ -105,10 +136,10 @@ wavesurfer.on('finish', () => {
 
     if (shouldRepeat) {
         wavesurfer.play();
-        updatePlayPauseButton()
+        updatePlayPauseButton();
     } else {
         playNextSong();
-        updatePlayPauseButton()
+        updatePlayPauseButton();
     }
 });
 
@@ -132,7 +163,6 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-
 nextSongBtn.addEventListener('click', () => {
     playNextSong();
 });
@@ -150,8 +180,16 @@ prevSongBtn.addEventListener('click', () => {
         playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
         musicImg.classList.add('rotate');
     }
-    wavesurfer.play();
+
+    wavesurfer.once('ready', () => {
+        playPauseBtn.classList.remove('pause');
+        playPauseBtn.classList.add('play');
+        playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        musicImg.classList.remove('rotate');
+        wavesurfer.play();
+    });
 });
+
 
 volumeInput.addEventListener('input', () => {
     wavesurfer.setVolume(volumeInput.value);

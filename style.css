@@ -11,6 +11,35 @@ body {
     font-family: 'poppins', sans-serif;
 }
 
+.song-list {
+    display: block;
+    max-width: 300px;
+    padding: 20px;
+    position: relative;
+    left: 560px;
+    top: 220px;
+    cursor: default;
+    position: relative;
+}
+
+.song-list ul{
+    list-style-type: none;
+}
+
+.song-list ul>li{
+    font-size: medium;
+    font-weight: 600;
+    border: 1px solid rgb(195, 195, 195);
+    padding: 3px;
+    background-color: white;
+    margin: 1px;
+}
+
+.song-list ul>li:hover {
+    background: rgb(255, 214, 214);
+    cursor: pointer;
+}
+
 .container {
     padding: 25px;
     width: 420px;
@@ -18,7 +47,7 @@ body {
     border-radius: 6px;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 60%;
     transform: translate(-50%, -50%);
     height: 410px;
     overflow: hidden;
@@ -314,4 +343,56 @@ body {
 
 .container .instructions:hover{
     color: #31456a;
+}
+
+/*screens up to 1440px (Laptop) */
+@media (max-width: 1440px) {
+    .song-list {
+        left: 360px;
+        top: 288px;
+    }
+}
+
+/*screens up to 1024px (Tablet) */
+@media (max-width: 1024px) {
+    .song-list {
+        left: 120px;
+        top: 290px;
+    }
+
+    .container{
+        left: 65%;
+    }
+}
+
+/*screens up to 768px (Mobile - l) */
+@media (max-width: 768px) {
+
+    .song-list{
+        max-width: 50%;
+        display: block;
+        margin: 0 auto;
+        left: 0;
+        top: 60px;
+    }
+    .container {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* Mobile */
+@media only screen and (max-width: 480px) {
+    .song-list {
+        max-width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 50px;
+    }
+
+    .container {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 48%;
+    }
 }

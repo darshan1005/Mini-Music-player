@@ -12,4 +12,5 @@
 - M->🔇
 - Enter->⏯️▶️
 ## *Need Collaboration* Email-me: battuladarshan7838@gmail.com
-![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/37741aa4-1e17-4e27-8aed-3c9fb8979bb7)
+![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/40ce8060-3a91-4008-9afa-059b3e7671ec)
+

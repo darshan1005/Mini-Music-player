@@ -53,4 +53,22 @@ let allmusic = [
         img: 'images/wann-be-yours',
         src: 'music/I-Wanna-Be-Yours'
     },
+    {
+        name: 'shape of you',
+        artist: 'Edsheern',
+        img: 'images/shape-of-you',
+        src: 'music/shape-of-you'
+    },
+    {
+        name: 'shivers',
+        artist: 'Edsheern',
+        img: 'images/Shivers-Art',
+        src: 'music/shivers'
+    },
+    {
+        name: 'Bad-Habits',
+        artist: 'Edsheern',
+        img: 'images/bad-habits',
+        src: 'music/Bad Habits'
+    },
 ]
