@@ -51,17 +51,10 @@ let loadMusic = (index) => {
     songName.innerHTML = `${allmusic[music_index - 1].name}`;
     musicImg.src = `${allmusic[music_index - 1].img}.jpeg`;
     
-    if (playPauseBtn.classList.contains('play')) {
-        playPauseBtn.classList.remove('play');
-        playPauseBtn.classList.add('pause');
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        musicImg.classList.add('rotate');
-    }
-
     wavesurfer.once('ready', () => {
         playPauseBtn.classList.remove('pause');
         playPauseBtn.classList.add('play');
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
         musicImg.classList.remove('rotate');
         wavesurfer.play();
     });
@@ -174,17 +167,10 @@ prevSongBtn.addEventListener('click', () => {
     wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
     wavesurfer.setTime(0);
 
-    if (playPauseBtn.classList.contains('play')) {
-        playPauseBtn.classList.remove('play');
-        playPauseBtn.classList.add('pause');
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        musicImg.classList.add('rotate');
-    }
-
     wavesurfer.once('ready', () => {
         playPauseBtn.classList.remove('pause');
         playPauseBtn.classList.add('play');
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
         musicImg.classList.remove('rotate');
         wavesurfer.play();
     });
