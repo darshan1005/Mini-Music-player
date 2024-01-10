@@ -19,7 +19,6 @@ body {
     left: 560px;
     top: 220px;
     cursor: default;
-    position: relative;
 }
 
 .song-list ul{

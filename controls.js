@@ -13,6 +13,7 @@ let volumeDecreBtn = document.querySelector('.container .volume-box .volume-decr
 let volumeInput = document.querySelector('.container .volume-box input');
 let repeatBtn = document.querySelector('.container .repeat-btn');
 let autoPlayBtn = document.querySelector('.container .autoplay-btn');
+let songListItems = document.querySelectorAll('.song-list ul>li');
 
 var wavesurfer = WaveSurfer.create({
     container: '#waveform',
@@ -50,14 +51,15 @@ let loadMusic = (index) => {
     artistName.innerHTML = `${allmusic[music_index - 1].artist}`;
     songName.innerHTML = `${allmusic[music_index - 1].name}`;
     musicImg.src = `${allmusic[music_index - 1].img}.jpeg`;
-
+    
     wavesurfer.once('ready', () => {
         playPauseBtn.classList.remove('pause');
         playPauseBtn.classList.add('play');
         playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        musicImg.classList.remove('rotate');
+        musicImg.classList.add('rotate');
         wavesurfer.play();
     });
+
 };
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -73,6 +75,7 @@ window.addEventListener('DOMContentLoaded', () => {
         songList.appendChild(listItem);
     });
 });
+
 
 playPauseBtn.addEventListener('click', () => {
     if (wavesurfer.isPlaying()) {
@@ -276,7 +279,7 @@ function resetPlaylistOrder() {
 wavesurfer.on('finish', playNextSong);
 
 // suffle
-
+document.querySelector('.shuffle-btn').addEventListener('click', toggleShuffle);
 let shuffle = false;
 
 function toggleShuffle() {
@@ -299,14 +302,13 @@ function shufflePlaylist() {
 }
 
 function playShuffledSong() {
-    console.log("Playing shuffled song");
     music_index = 1;
     loadMusic(music_index);
     wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
 
     wavesurfer.on('finish', () => {
         if (shuffle) {
-            playNextShuffledSong();
+            playNextSong();
         }
     });
 
@@ -335,6 +337,6 @@ function playNextShuffledSong() {
     }
 }
 
-document.querySelector('.shuffle-btn').addEventListener('click', toggleShuffle);
+
 
 
