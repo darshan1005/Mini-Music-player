@@ -54,12 +54,6 @@ let allmusic = [
         src: 'music/I-Wanna-Be-Yours'
     },
     {
-        name: 'Shape of you',
-        artist: 'Edsheern',
-        img: 'images/shape-of-you',
-        src: 'music/shape-of-you'
-    },
-    {
         name: 'Shivers',
         artist: 'Edsheern',
         img: 'images/Shivers-Art',
@@ -70,5 +64,17 @@ let allmusic = [
         artist: 'Edsheern',
         img: 'images/bad-habits',
         src: 'music/Bad Habits'
+    }, 
+    {
+        name: 'Shape of you',
+        artist: 'Edsheern',
+        img: 'images/shape-of-you',
+        src: 'music/shape-of-you'
+    },
+    {
+        name: 'Shape of u-Indian ragas',
+        artist: 'Indian Ragas',
+        img: 'images/indian-ragas',
+        src: 'music/shape-of-you-indian-ragas'
     },
 ]

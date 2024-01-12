@@ -174,7 +174,7 @@ prevSongBtn.addEventListener('click', () => {
         playPauseBtn.classList.remove('pause');
         playPauseBtn.classList.add('play');
         playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        musicImg.classList.remove('rotate');
+        musicImg.classList.add('rotate');
         wavesurfer.play();
     });
 });

@@ -4,14 +4,15 @@
 ### wavesurfer (waves) - working
 ### Auto play - working
 ### Download - working
+### Repeat - working
 ### Loop - coming soon
-### Suffle - semi-working (shuffle list on click)
+### Suffle - coming soon
 ### volume (Buttons & Inputs ) - working
 ### Keys
-- ➡️⬅️->change songs
-- ⬆️⬇️->CTRL 🔊
-- M->🔇
-- Enter->⏯️▶️
+- ➡️⬅️-> change songs
+- ⬆️⬇️-> 🔊
+- M->🔇(mute)
+- Enter-> ⏯️▶️
 ## *Need Collaboration* Email-me: battuladarshan7838@gmail.com
 # version 0 
 ![music](https://github.com/darshan1005/Mini-Music-player/assets/114302987/a1b229b7-f829-49df-ba7b-0cb6aa411bd6)

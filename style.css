@@ -12,10 +12,10 @@ body {
 }
 
 .song-list {
+    position: relative;
     display: block;
     max-width: 300px;
     padding: 20px;
-    position: relative;
     left: 560px;
     top: 220px;
     cursor: default;
@@ -31,7 +31,6 @@ body {
     border: 1px solid rgb(195, 195, 195);
     padding: 3px;
     background-color: white;
-    margin: 1px;
 }
 
 .song-list ul>li:hover {
@@ -174,7 +173,6 @@ body {
     font-size: 13px;
     color: #31456A;
     padding-right: 10px;
-    margin-top: 2.5rem;
 }
 
 .container .waveform-box .total-time {
@@ -183,7 +181,6 @@ body {
     font-size: 13px;
     color: #31456A;
     padding-left: 10px;
-    margin-top: 2.5rem;
 }
 
 .container .waveform-box #waveform {
