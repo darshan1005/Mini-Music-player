@@ -77,4 +77,10 @@ let allmusic = [
         img: 'images/indian-ragas',
         src: 'music/shape-of-you-indian-ragas'
     },
+    {
+        name: 'Love Story',
+        artist: 'Indila',
+        img: 'images/love-story',
+        src: 'music/love-story'
+    },
 ]

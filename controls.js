@@ -25,6 +25,22 @@ var wavesurfer = WaveSurfer.create({
     barRadius: 2,
 });
 
+let loadMusic = (index) => {
+    music_index = index;
+    wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
+    artistName.innerHTML = `${allmusic[music_index - 1].artist}`;
+    songName.innerHTML = `${allmusic[music_index - 1].name}`;
+    musicImg.src = `${allmusic[music_index - 1].img}.jpeg`;
+    
+    wavesurfer.once('ready', () => {
+        playPauseBtn.classList.remove('pause');
+        playPauseBtn.classList.add('play');
+        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        musicImg.classList.add('rotate');
+        wavesurfer.play();
+    });
+};
+
 var songSlider = document.getElementById('song-slider');
 
 wavesurfer.on('ready', function () {
@@ -45,22 +61,6 @@ window.addEventListener('DOMContentLoaded', () => {
     loadMusic(music_index);
 });
 
-let loadMusic = (index) => {
-    music_index = index;
-    wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
-    artistName.innerHTML = `${allmusic[music_index - 1].artist}`;
-    songName.innerHTML = `${allmusic[music_index - 1].name}`;
-    musicImg.src = `${allmusic[music_index - 1].img}.jpeg`;
-    
-    wavesurfer.once('ready', () => {
-        playPauseBtn.classList.remove('pause');
-        playPauseBtn.classList.add('play');
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        musicImg.classList.add('rotate');
-        wavesurfer.play();
-    });
-
-};
 
 window.addEventListener('DOMContentLoaded', () => {
     loadMusic(music_index);
@@ -219,7 +219,7 @@ repeatBtn.addEventListener('click', () => {
     shouldRepeat = !shouldRepeat;
     updateButtonState('.repeat-btn', shouldRepeat);
     if (shouldRepeat) {
-        wavesurfer.un('finish'); // Remove previous finish event listener
+        wavesurfer.un('finish'); 
         wavesurfer.on('finish', () => {
             setTimeout(() => {
                 console.log("🔂 Replaying song after finish");
@@ -278,65 +278,5 @@ function resetPlaylistOrder() {
 
 wavesurfer.on('finish', playNextSong);
 
-// suffle
-document.querySelector('.shuffle-btn').addEventListener('click', toggleShuffle);
-let shuffle = false;
-
-function toggleShuffle() {
-    shuffle = !shuffle;
-    updateButtonState('.shuffle-btn', shuffle);
-
-    if (shuffle) {
-        shufflePlaylist();
-    } else {
-        resetPlaylistOrder();
-    }
-}
-
-function shufflePlaylist() {
-    console.log("🔀 Shuffling playlist");
-    for (let i = allmusic.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [allmusic[i], allmusic[j]] = [allmusic[j], allmusic[i]];
-    }
-}
-
-function playShuffledSong() {
-    music_index = 1;
-    loadMusic(music_index);
-    wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
-
-    wavesurfer.on('finish', () => {
-        if (shuffle) {
-            playNextSong();
-        }
-    });
-
-    updatePlayPauseButton();
-    wavesurfer.play();
-}
-
-function playNextShuffledSong() {
-    music_index++;
-    music_index > allmusic.length ? music_index = 1 : music_index = music_index;
-    loadMusic(music_index);
-    wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
-    wavesurfer.setTime(0);
-
-    if (playPauseBtn.classList.contains('play')) {
-        playPauseBtn.classList.remove('play');
-        playPauseBtn.classList.add('pause');
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        musicImg.classList.add('rotate');
-    }
-
-    if (canAutoPlay) {
-        wavesurfer.once('ready', () => {
-            wavesurfer.play();
-        });
-    }
-}
-
-
-
+// suffel button
 

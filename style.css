@@ -11,26 +11,45 @@ body {
     font-family: 'poppins', sans-serif;
 }
 
+.song-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+.song-list::-webkit-scrollbar-thumb {
+    background-color: #5467FF; 
+    border-radius: 5px;
+}
+
+.song-list::-webkit-scrollbar-track {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+}
+
 .song-list {
     position: relative;
     display: block;
     max-width: 300px;
-    padding: 20px;
+    padding: 0px 5px;
     left: 560px;
-    top: 220px;
+    top: 270px;
     cursor: default;
+    height: 400px;
+    overflow-y: auto;
 }
 
-.song-list ul{
+.song-list ul {
     list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
-.song-list ul>li{
+.song-list ul>li {
     font-size: medium;
     font-weight: 600;
     border: 1px solid rgb(195, 195, 195);
-    padding: 3px;
+    padding: 5px;
     background-color: white;
+    margin-bottom: 5px;
 }
 
 .song-list ul>li:hover {
