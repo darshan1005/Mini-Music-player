@@ -295,6 +295,8 @@ body {
 }
 
 .container .music-info .download-button {
+    display: flex;
+    align-items: center;
     background: rgb(105, 105, 255);
     color: #ffffff;
     font-weight: 600;
@@ -302,9 +304,8 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
     font-size: 11px;
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .container .music-info .download-button i {
@@ -312,32 +313,31 @@ body {
 } 
 
 /* control buttons */
-
-.container .controls-bottom {
+.container .controls-botton {
     position: relative;
     display: flex;
     justify-content: flex-end;
     cursor: pointer;
-    padding: 6px;
-    margin-top: -10px;
 }
 
-.container .controls-bottom button {
-    background-color: transparent;
-    color: rgba(105, 105, 105, 0.65);
+.container .controls-botton button {
+    background-color: rgb(105, 105, 255);
+    color: rgb(255, 255, 255);
     border: none;
-    font-size: 18px;
-    font-weight: 900;
-    padding: 6px;
+    font-size: 11px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-right: 2rem;
     cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.container .controls-botton button i{
+    margin-right: 6px;
 }
 
-.container .controls-bottom button:hover i{
+.container .controls-botton button.active {
     color: #000000;
-}
-
-.container .controls-bottom button.active {
-    color: #0000FF;
+    font-weight: 700;
 }
 
 /* instructions */

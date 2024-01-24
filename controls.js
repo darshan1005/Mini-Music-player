@@ -179,7 +179,6 @@ prevSongBtn.addEventListener('click', () => {
     });
 });
 
-
 volumeInput.addEventListener('input', () => {
     wavesurfer.setVolume(volumeInput.value);
     updateVolumeIcon();
@@ -277,6 +276,4 @@ function resetPlaylistOrder() {
 }
 
 wavesurfer.on('finish', playNextSong);
-
-// suffel button
 
