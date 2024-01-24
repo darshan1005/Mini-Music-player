@@ -22,4 +22,6 @@
 ![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/b3172c85-68cd-4c41-8410-767e7f2a25a1)
 # update v.3 : scroller
 ![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/07e1a152-06dc-4d8d-9017-63ed0141336d)
+## update v.1.2 : Loop & suffel buttons are removed.
+![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/3567a60d-cbfd-45df-8537-9dd14c2adb13)
 ## upcomming update : Full resposive, Online streaming (Music appication)
