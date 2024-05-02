@@ -24,4 +24,7 @@
 ![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/07e1a152-06dc-4d8d-9017-63ed0141336d)
 ## update v.1.2 : Loop & suffel buttons are removed.
 ![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/3567a60d-cbfd-45df-8537-9dd14c2adb13)
+## update v.1.3 : Dynamic search & UI update
+![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/58b10860-c433-4bcd-b703-0c7f68d3d8ed)
+
 ## upcomming update :Favorite list,search option, Full resposive, Online streaming (Music appication)
