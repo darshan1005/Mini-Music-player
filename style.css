@@ -26,10 +26,12 @@ body {
 } */
 
 .List-aside{
+    position: absolute;
+    top: 50%;
+    left: 27%;
+    transform: translate(-50%, -50%);
     margin-left: 5px;
     max-width: fit-content;
-    margin-top: 4.5rem;
-    position: sticky;
 }
 
 .song-search{
@@ -37,16 +39,16 @@ body {
     margin: 0 auto;
     height: 50px;
     width: 100%;
-    font-size: x-large;
-    padding-left: 6px;
+    font-size: large;
+    padding-left: 12px;
     border-radius: 4px;
     margin-bottom: 6px;
 }
 
 .song-list {
+    height: 21.8rem;
     display: block;
     cursor: default;
-    height: 37.5rem;
     max-width: max-content;
     overflow-y: auto;
 }
@@ -75,12 +77,12 @@ body {
 .container {
     padding: 25px;
     width: 40rem;
-    height: 25rem;
+    height: 26rem;
     background: #ffffff;
     border-radius: 6px;
     position: absolute;
     top: 50%;
-    left: 60%;
+    left: 62%;
     transform: translate(-50%, -50%);
     overflow: hidden;
 }
@@ -107,7 +109,7 @@ body {
     display: grid;
     place-items: center;
     background: white;
-
+    border: 2px solid black;
 }
 
 .container .music-head .img-box img{
@@ -135,6 +137,7 @@ body {
     color: #5467FF;
     word-break: break-all;
     word-wrap: break-word;
+    font-size: small;
 }
 
 .container .music-info .download-repeat-btn button{
@@ -183,6 +186,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.container .music-body .waveform-box{
+    margin-top: 14px;
 }
 
 .container .music-body .waveform-box #song-slider {
@@ -294,7 +301,7 @@ body {
     align-items: center;
     position: relative;
     margin-top: 18rem;
-    font-size: 11px;
+    font-size: 13px;
     font-style: unset;
     font-weight: 700;
     color: #31456a7f;
