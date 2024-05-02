@@ -1,279 +1,314 @@
 let music_index = 1;
-let artistName = document.querySelector('.container .music-info .artist-name .artist');
-let songName = document.querySelector('.container .music-info .song-name .song');
-let musicImg = document.querySelector('.container .img-box img');
-let playPauseBtn = document.querySelector('.container .play-pause-btn');
-let currentTime = document.querySelector('.container .waveform-box .current-time');
-let totalTime = document.querySelector('.container .waveform-box .total-time');
-let nextSongBtn = document.querySelector('.container .btns-box .next-btn');
-let prevSongBtn = document.querySelector('.container .btns-box .prev-btn');
-let volumeIcon = document.querySelector('.container .volume-box .volume-icon');
-let volumeIncreBtn = document.querySelector('.container .volume-box .volume-incre');
-let volumeDecreBtn = document.querySelector('.container .volume-box .volume-decre');
-let volumeInput = document.querySelector('.container .volume-box input');
-let repeatBtn = document.querySelector('.container .repeat-btn');
-let autoPlayBtn = document.querySelector('.container .autoplay-btn');
-let songListItems = document.querySelectorAll('.song-list ul>li');
+let artistName = document.querySelector(".container .music-info .artist-name .artist");
+let songName = document.querySelector(".container .music-info .song-name .song");
+let musicImg = document.querySelector(".container .img-box img");
+let playPauseBtn = document.querySelector(".container .play-pause-btn");
+let currentTime = document.querySelector(".container .waveform-box .current-time");
+let totalTime = document.querySelector(".container .waveform-box .total-time");
+let nextSongBtn = document.querySelector(".container .btns-box .next-btn");
+let prevSongBtn = document.querySelector(".container .btns-box .prev-btn");
+let volumeIcon = document.querySelector(".container .volume-box .volume-icon");
+let volumeIncreBtn = document.querySelector(".container .volume-box .volume-incre");
+let volumeDecreBtn = document.querySelector(".container .volume-box .volume-decre");
+let volumeInput = document.querySelector(".container .volume-box input");
+let repeatBtn = document.querySelector(".container .repeat-btn");
+let autoPlayBtn = document.querySelector(".container .autoplay-btn");
+let searchInput = document.querySelector('.song-search');
 
 var wavesurfer = WaveSurfer.create({
-    container: '#waveform',
-    waveColor: '#ddd',
-    progressColor: '#5467FF',
-    barWidth: 2,
-    responsive: true,
-    height: 90,
-    barRadius: 2,
+  container: "#waveform",
+  waveColor: "#ddd",
+  progressColor: "#5467FF",
+  barWidth: 2,
+  responsive: true,
+  height: 90,
+  barRadius: 2,
 });
 
+// Function to load music
 let loadMusic = (index) => {
-    music_index = index;
-    wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
-    artistName.innerHTML = `${allmusic[music_index - 1].artist}`;
-    songName.innerHTML = `${allmusic[music_index - 1].name}`;
-    musicImg.src = `${allmusic[music_index - 1].img}.jpeg`;
-    
-    wavesurfer.once('ready', () => {
-        playPauseBtn.classList.remove('pause');
-        playPauseBtn.classList.add('play');
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        musicImg.classList.add('rotate');
-        wavesurfer.play();
-    });
+  music_index = index;
+  wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
+  artistName.innerHTML = `${allmusic[music_index - 1].artist}`;
+  songName.innerHTML = `${allmusic[music_index - 1].name}`;
+  musicImg.src = `${allmusic[music_index - 1].img}.jpeg`;
+
+  wavesurfer.once("ready", () => {
+    playPauseBtn.classList.remove("pause");
+    playPauseBtn.classList.add("play");
+    playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    musicImg.classList.add("rotate");
+    wavesurfer.play();
+  });
 };
 
-var songSlider = document.getElementById('song-slider');
+// Initialize song slider
+var songSlider = document.getElementById("song-slider");
 
-wavesurfer.on('ready', function () {
-    songSlider.max = wavesurfer.getDuration();
+wavesurfer.on("ready", function () {
+  songSlider.max = wavesurfer.getDuration();
 });
 
-wavesurfer.on('audioprocess', function () {
-    songSlider.value = wavesurfer.getCurrentTime();
+wavesurfer.on("audioprocess", function () {
+  songSlider.value = wavesurfer.getCurrentTime();
 });
 
-songSlider.addEventListener('input', function () {
-    wavesurfer.seekTo(songSlider.value / wavesurfer.getDuration());
+songSlider.addEventListener("input", function () {
+  wavesurfer.seekTo(songSlider.value / wavesurfer.getDuration());
 });
 
+// Load the first music
 wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
 
-window.addEventListener('DOMContentLoaded', () => {
-    loadMusic(music_index);
-});
+// Event listener for DOMContentLoaded
+window.addEventListener("DOMContentLoaded", () => {
+  // Load initial music
+  loadMusic(music_index);
 
+  const songList = document.querySelector(".song-list ul");
 
-window.addEventListener('DOMContentLoaded', () => {
-    loadMusic(music_index);
-    const songList = document.querySelector('.song-list ul');
-    allmusic.forEach((song, index) => {
-        const listItem = document.createElement('li');
-        listItem.textContent = song.name;
-        listItem.dataset.index = index + 1;
-        listItem.addEventListener('click', () => {
-            loadMusic(index + 1);
-        });
-        songList.appendChild(listItem);
+  // Populate the initial song list
+  allmusic.forEach((song, index) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = song.name;
+    listItem.dataset.index = index + 1;
+    listItem.addEventListener("click", () => {
+      loadMusic(index + 1);
     });
+    songList.appendChild(listItem);
+  });
+
+// Dynamic search functionality
+searchInput.addEventListener("input", () => {
+    const searchTerm = searchInput.value.toLowerCase();
+    const filteredSongs = allmusic.filter(song => {
+      return song.name.toLowerCase().includes(searchTerm);
+    });
+  
+    // Clear the existing song list
+    songList.innerHTML = "";
+  
+    // Populate the song list with filtered songs
+    filteredSongs.forEach((song) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = song.name;
+      listItem.addEventListener("click", () => {
+        const index = allmusic.findIndex(item => item === song) + 1;
+        loadMusic(index);
+        wavesurfer.load(`${song.src}.mp3`);
+        wavesurfer.setTime(0);
+        wavesurfer.once("ready", () => {
+          wavesurfer.play();
+        });
+      });
+      songList.appendChild(listItem);
+    });
+  });  
 });
 
-
-playPauseBtn.addEventListener('click', () => {
-    if (wavesurfer.isPlaying()) {
-        wavesurfer.pause();
-    } else {
-        wavesurfer.play();
-    }
-    updatePlayPauseButton();
+// Event listener for play/pause button
+playPauseBtn.addEventListener("click", () => {
+  if (wavesurfer.isPlaying()) {
+    wavesurfer.pause();
+  } else {
+    wavesurfer.play();
+  }
+  updatePlayPauseButton();
 });
 
+// Function to update play/pause button state
 function updatePlayPauseButton() {
-    if (wavesurfer.isPlaying()) {
-        playPauseBtn.classList.remove('play');
-        playPauseBtn.classList.add('pause');
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        musicImg.classList.add('rotate');
-    } else {
-        playPauseBtn.classList.remove('pause');
-        playPauseBtn.classList.add('play');
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-        musicImg.classList.remove('rotate');
-    }
+  if (wavesurfer.isPlaying()) {
+    playPauseBtn.classList.remove("play");
+    playPauseBtn.classList.add("pause");
+    playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    musicImg.classList.add("rotate");
+  } else {
+    playPauseBtn.classList.remove("pause");
+    playPauseBtn.classList.add("play");
+    playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+    musicImg.classList.remove("rotate");
+  }
 }
 
-//time calculate
+// Function to calculate time
 let timecalculator = function (value) {
-    let second = Math.floor(value % 60);
-    let minute = Math.floor(value / 60);
+  let second = Math.floor(value % 60);
+  let minute = Math.floor(value / 60);
 
-    if (second < 10) {
-        second = "0" + second;
-    }
-    return `${minute}:${second}`;
-}
+  if (second < 10) {
+    second = "0" + second;
+  }
+  return `${minute}:${second}`;
+};
 
-//get total Time
+// Get total Time
 wavesurfer.on("ready", () => {
-    totalTime.innerHTML = timecalculator(wavesurfer.getDuration());
+  totalTime.innerHTML = timecalculator(wavesurfer.getDuration());
 });
 
-//Get Current Time
+// Get Current Time
 wavesurfer.on("audioprocess", () => {
-    currentTime.innerHTML = timecalculator(wavesurfer.getCurrentTime());
+  currentTime.innerHTML = timecalculator(wavesurfer.getCurrentTime());
 });
 
 let shouldRepeat = false;
 let canAutoPlay = true;
 
-wavesurfer.on('finish', () => {
-    playPauseBtn.classList.remove('pause');
-    playPauseBtn.classList.add('play');
-    playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-    musicImg.classList.remove('rotate');
+wavesurfer.on("finish", () => {
+  playPauseBtn.classList.remove("pause");
+  playPauseBtn.classList.add("play");
+  playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+  musicImg.classList.remove("rotate");
 
-    if (shouldRepeat) {
-        wavesurfer.play();
-        updatePlayPauseButton();
-    } else {
-        playNextSong();
-        updatePlayPauseButton();
-    }
-});
-
-document.addEventListener('keydown', (event) => {
-    const key = event.key;
-
-    if (key === 'ArrowRight') { // Right arrow key
-        nextSongBtn.click();
-    } else if (key === 'ArrowLeft') { // Left arrow key
-        prevSongBtn.click();
-    } else if (key === 'ArrowUp') { // Up arrow key
-        volumeIncreBtn.click();
-    } else if (key === 'ArrowDown') { // Down arrow key
-        volumeDecreBtn.click();
-    } else if (key === 'Enter') { // Enter key
-        playPauseBtn.click();
-    } else if (key == "m" || key == "M"){
-        volumeIcon.click(); // key m or M
-    } else {
-        console.log(`Key pressed: ${key}`);
-    }
-});
-
-nextSongBtn.addEventListener('click', () => {
+  if (shouldRepeat) {
+    wavesurfer.play();
+    updatePlayPauseButton();
+  } else {
     playNextSong();
+    updatePlayPauseButton();
+  }
 });
 
-prevSongBtn.addEventListener('click', () => {
-    music_index--;
-    music_index < 1 ? music_index = allmusic.length : music_index = music_index;
-    loadMusic(music_index);
-    wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
-    wavesurfer.setTime(0);
+document.addEventListener("keydown", (event) => {
+  const key = event.key;
 
-    wavesurfer.once('ready', () => {
-        playPauseBtn.classList.remove('pause');
-        playPauseBtn.classList.add('play');
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        musicImg.classList.add('rotate');
-        wavesurfer.play();
-    });
+  if (key === "ArrowRight") {
+    // Right arrow key
+    nextSongBtn.click();
+  } else if (key === "ArrowLeft") {
+    // Left arrow key
+    prevSongBtn.click();
+  } else if (key === "ArrowUp") {
+    // Up arrow key
+    volumeIncreBtn.click();
+  } else if (key === "ArrowDown") {
+    // Down arrow key
+    volumeDecreBtn.click();
+  } else if (key === "Enter") {
+    // Enter key
+    playPauseBtn.click();
+  } else if (key == "m" || key == "M") {
+    volumeIcon.click(); // key m or M
+  } else {
+    console.log(`Key pressed: ${key}`);
+  }
 });
 
-volumeInput.addEventListener('input', () => {
-    wavesurfer.setVolume(volumeInput.value);
-    updateVolumeIcon();
+nextSongBtn.addEventListener("click", () => {
+  playNextSong();
 });
 
-volumeIncreBtn.addEventListener('click', () => {
-    volumeInput.stepUp();
-    wavesurfer.setVolume(volumeInput.value);
-    updateVolumeIcon();
+prevSongBtn.addEventListener("click", () => {
+  music_index--;
+  music_index < 1
+    ? (music_index = allmusic.length)
+    : (music_index = music_index);
+  loadMusic(music_index);
+  wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
+  wavesurfer.setTime(0);
+
+  wavesurfer.once("ready", () => {
+    playPauseBtn.classList.remove("pause");
+    playPauseBtn.classList.add("play");
+    playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    musicImg.classList.add("rotate");
+    wavesurfer.play();
+  });
 });
 
-volumeDecreBtn.addEventListener('click', () => {
-    volumeInput.stepDown();
-    wavesurfer.setVolume(volumeInput.value);
-    updateVolumeIcon();
+volumeInput.addEventListener("input", () => {
+  wavesurfer.setVolume(volumeInput.value);
+  updateVolumeIcon();
+});
+
+volumeIncreBtn.addEventListener("click", () => {
+  volumeInput.stepUp();
+  wavesurfer.setVolume(volumeInput.value);
+  updateVolumeIcon();
+});
+
+volumeDecreBtn.addEventListener("click", () => {
+  volumeInput.stepDown();
+  wavesurfer.setVolume(volumeInput.value);
+  updateVolumeIcon();
 });
 
 function updateVolumeIcon() {
-    if (volumeInput.value == 0) {
-        volumeIcon.innerHTML = 'volume_off';
-    } else {
-        volumeIcon.innerHTML = 'volume_up';
-    }
+  if (volumeInput.value == 0) {
+    volumeIcon.innerHTML = "volume_off";
+  } else {
+    volumeIcon.innerHTML = "volume_up";
+  }
 }
 
-volumeIcon.addEventListener('click', () => {
-    if (volumeInput.value == 0) {
-        volumeIcon.innerHTML = 'volume_up';
-        wavesurfer.setVolume(volumeInput.value = .2);
-    } else {
-        volumeIcon.innerHTML = 'volume_off';
-        wavesurfer.setVolume(volumeInput.value = 0);
-    }
+volumeIcon.addEventListener("click", () => {
+  if (volumeInput.value == 0) {
+    volumeIcon.innerHTML = "volume_up";
+    wavesurfer.setVolume((volumeInput.value = 0.2));
+  } else {
+    volumeIcon.innerHTML = "volume_off";
+    wavesurfer.setVolume((volumeInput.value = 0));
+  }
 });
 
-repeatBtn.addEventListener('click', () => {
-    shouldRepeat = !shouldRepeat;
-    updateButtonState('.repeat-btn', shouldRepeat);
-    if (shouldRepeat) {
-        wavesurfer.un('finish'); 
-        wavesurfer.on('finish', () => {
-            setTimeout(() => {
-                console.log("🔂 Replaying song after finish");
-                wavesurfer.play();
-            }, 500);
-        });
-    } else {
-        console.log("🛑 Removing 'finish' event listener for repeat");
-        wavesurfer.un('finish');
-    }
+repeatBtn.addEventListener("click", () => {
+  shouldRepeat = !shouldRepeat;
+  updateButtonState(".repeat-btn", shouldRepeat);
+  if (shouldRepeat) {
+    wavesurfer.un("finish");
+    wavesurfer.on("finish", () => {
+      setTimeout(() => {
+        console.log("🔂 Replaying song after finish");
+        wavesurfer.play();
+      }, 500);
+    });
+  } else {
+    console.log("🛑 Removing 'finish' event listener for repeat");
+    wavesurfer.un("finish");
+  }
 });
 
-autoPlayBtn.addEventListener('click', () => {
-    canAutoPlay = !canAutoPlay;
-    updateButtonState('.autoplay-btn', canAutoPlay);
+autoPlayBtn.addEventListener("click", () => {
+  canAutoPlay = !canAutoPlay;
+  updateButtonState(".autoplay-btn", canAutoPlay);
 });
 
 function playNextSong() {
-    music_index++;
-    music_index > allmusic.length ? music_index = 1 : music_index = music_index;
-    loadMusic(music_index);
-    wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
-    wavesurfer.setTime(0);
+  music_index++;
+  music_index > allmusic.length
+    ? (music_index = 1)
+    : (music_index = music_index);
+  loadMusic(music_index);
+  wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
+  wavesurfer.setTime(0);
 
-    if (playPauseBtn.classList.contains('play')) {
-        playPauseBtn.classList.remove('play');
-        playPauseBtn.classList.add('pause');
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        musicImg.classList.add('rotate');
-    }
+  if (playPauseBtn.classList.contains("play")) {
+    playPauseBtn.classList.remove("play");
+    playPauseBtn.classList.add("pause");
+    playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    musicImg.classList.add("rotate");
+  }
 
-    if (canAutoPlay) {
-        wavesurfer.once('ready', () => {
-            wavesurfer.play();
-        });
-    }
+  if (canAutoPlay) {
+    wavesurfer.once("ready", () => {
+      wavesurfer.play();
+    });
+  }
 }
 
 function updateButtonState(buttonSelector, isActive) {
-    console.log(`🎚️ Updating button state for ${buttonSelector}: ${isActive ? 'Activated' : 'Deactivated'}`);
-    const button = document.querySelector(buttonSelector);
-    if (isActive) {
-        button.classList.add('active');
-    } else {
-        button.classList.remove('active');
-    }
+  console.log(
+    `🎚️ Updating button state for ${buttonSelector}: ${
+      isActive ? "Activated" : "Deactivated"
+    }`
+  );
+  const button = document.querySelector(buttonSelector);
+  if (isActive) {
+    button.classList.add("active");
+  } else {
+    button.classList.remove("active");
+  }
 }
 
-function resetPlaylistOrder() {
-    console.log("🔄 Resetting playlist order");
-    allmusic.sort((a, b) => a.index - b.index);
-    music_index = 1;
-    loadMusic(music_index);
-    wavesurfer.load(`${allmusic[music_index - 1].src}.mp3`);
-}
-
-wavesurfer.on('finish', playNextSong);
-
+wavesurfer.on("finish", playNextSong);
