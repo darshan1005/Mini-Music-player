@@ -12,7 +12,7 @@
 - ➡️⬅️ -> change songs
 - ⬆️⬇️ -> 🔊
 - M ->🔇(mute)
-- Enter -> ⏯️▶️
+- Enter or SpaceBar -> ⏯️▶️
 ### *Need Collaboration* Email-me: battuladarshan7838@gmail.com
 ## version 0 
 ![music](https://github.com/darshan1005/Mini-Music-player/assets/114302987/a1b229b7-f829-49df-ba7b-0cb6aa411bd6)
