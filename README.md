@@ -1,6 +1,8 @@
 # Mini-music-player
 ## Features status
 ### Music list - working
+### Fav List - Coming soon
+### Artist Music List - Coming soon
 ### wavesurfer (waves) - working
 ### Auto play - working
 ### Download - working
