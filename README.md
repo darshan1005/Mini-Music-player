@@ -9,7 +9,7 @@
 
 ## Updates
 ### Fav List - Coming soon
-### Artist Music List - Coming soon
+### Artist Music List & search - Coming soon
 ### Loop - coming soon
 ### Suffle - coming soon
 
