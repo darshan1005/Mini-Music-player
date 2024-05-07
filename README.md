@@ -35,4 +35,4 @@
 ## update v.1.4 : Artist List & Search, UI update
 ![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/f9bf5096-93a9-46b4-a5b8-dcfaf686bb1c)
 
-## upcomming update :Favorite list, Artist List search, Full resposive, Online streaming (Music appication)
+### upcomming update :Favorite list, Artist List search, Full resposive, Online streaming (Music appication)
