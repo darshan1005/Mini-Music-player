@@ -32,7 +32,7 @@
 ![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/3567a60d-cbfd-45df-8537-9dd14c2adb13)
 ## update v.1.3 : Dynamic search & UI update
 ![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/58b10860-c433-4bcd-b703-0c7f68d3d8ed)
-## update v.1.4 : Artist List & Search, UI update
+## update v.1.4 : Artist List & Search, UI Dynamic Color Change Theme
 ![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/f9bf5096-93a9-46b4-a5b8-dcfaf686bb1c)
 
 ### upcomming update :Favorite list, Artist List search, Full resposive, Online streaming (Music appication)
