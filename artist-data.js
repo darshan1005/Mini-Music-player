@@ -16,11 +16,6 @@ let artistData = [
     img: 'artist/SPB.jpg',
     name: 'SPB'
   },
-  {
-    id: 4,
-    img: 'artist/SPB.jpg',
-    name: 'SPB'
-  }
 ];
 
 artistData.forEach(artist => {
