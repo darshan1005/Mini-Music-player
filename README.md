@@ -1,6 +1,7 @@
 # Muisc-player 📻 UNLIMITED MUSIC
+#### Created By Darshan
 ![unlimited-music](https://github.com/darshan1005/Mini-Music-player/assets/114302987/31f78077-50e7-4617-9901-3553c75e2977)
-Created By Darshan
+
 ## Features status
 - Music list : working
 - wavesurfer (waves) : working
