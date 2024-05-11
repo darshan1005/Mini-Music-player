@@ -1,4 +1,4 @@
-# Mini-music-player
+# Muisc-player : UNLIMITED MUSIC
 ## Features status
 - Music list : working
 - wavesurfer (waves) : working
@@ -14,7 +14,7 @@
 - Loop : coming soon
 - Suffle : coming soon
 
-### Keys
+## Keys
 - ➡️⬅️ -> change songs
 - ⬆️⬇️ -> 🔊
 - M ->🔇(mute)
