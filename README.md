@@ -7,13 +7,13 @@
 ### Repeat - working
 ### volume (Buttons & Inputs ) - working
 ### Artist Music List - Working
-
-## Updates
+#
+## UI Updates
 ### Fav List - Coming soon
-### Artist List & search - Coming soon
+### Artist List search - Coming soon
 ### Loop - coming soon
 ### Suffle - coming soon
-
+#
 ### Keys
 - ➡️⬅️ -> change songs
 - ⬆️⬇️ -> 🔊
@@ -36,7 +36,7 @@
 ## update v.1.4 : Artist List & Search, UI Dynamic Color Change Theme
 ![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/f9bf5096-93a9-46b4-a5b8-dcfaf686bb1c)
 ## update v.2.1 : Artist List & Music list, playAll/StopALL
-![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/ef4e9b0d-17bd-4261-b289-685350dfdb13)
+![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/9df7873f-0881-4927-b7fc-fd24df43aa70)
 ![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/c8e10c6e-111a-4126-bfbb-95d4d4e6c87e)
 
 ### upcomming update : Artist Search, Favorite list, Full resposive, Online streaming (Music appication)
