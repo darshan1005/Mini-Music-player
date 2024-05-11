@@ -1,18 +1,18 @@
 # Mini-music-player
 ## Features status
-### Music list - working
-### wavesurfer (waves) - working
-### Auto play - working
-### Download - working
-### Repeat - working
-### volume (Buttons & Inputs ) - working
-### Artist Music List - Working
+- Music list : working
+- wavesurfer (waves) : working
+- Auto play : working
+- Download : working
+- Repeat : working
+- volume (Buttons & Inputs ) : working
+- Artist Music List : Working
 #
 ## UI Updates
-### Fav List - Coming soon
-### Artist List search - Coming soon
-### Loop - coming soon
-### Suffle - coming soon
+- Fav List : Coming soon
+- Artist List search : Coming soon
+- Loop : coming soon
+- Suffle : coming soon
 #
 ### Keys
 - ➡️⬅️ -> change songs
