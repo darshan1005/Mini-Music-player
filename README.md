@@ -7,13 +7,13 @@
 - Repeat : working
 - volume (Buttons & Inputs ) : working
 - Artist Music List : Working
-#
+
 ## UI Updates
 - Fav List : Coming soon
 - Artist List search : Coming soon
 - Loop : coming soon
 - Suffle : coming soon
-#
+
 ### Keys
 - ➡️⬅️ -> change songs
 - ⬆️⬇️ -> 🔊
