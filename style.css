@@ -420,7 +420,22 @@ body {
 .fav-songs{
     height: 26rem;
     width: 15rem;
-    background:white;
+    background:transparent;
+    border: 1px solid white;
+}
+
+.fav-songs .fav-title{
+    width: 100%;
+    height: 2rem;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fav-songs ul{
+    padding: 5px;
+    color: rgb(146, 146, 146);
 }
 
 /* All Artists */
