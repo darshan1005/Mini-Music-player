@@ -17,6 +17,8 @@
 - Loop 
 - Suffle
 - Artist List search
+- Login/Register
+- Home Page
 
 ## Keys
 - ➡️⬅️ -> change songs
