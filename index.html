@@ -11,8 +11,8 @@
   <!--Stylesheet-->
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="data:,">
-  <link rel="icon" type="image/svg"  sizes="32x32" href="images/unlimited-music.svg">
-  <title>unlimited-music</title>
+  <link rel="icon" type="image/svg" sizes="32x32" href="images/unlimited-music.svg">
+  <title>Unlimited-Music</title>
 </head>
 
 <body>
@@ -26,8 +26,12 @@
     </div>
   </div>
 
-  <div class="main">
+  <div id="internetIssueMessage" class="internet-issue-message">
+    <h2>🛜🛜🛜🛜 Internet Interruption</h2>
+    <p>Oops! It seems you are offline. Please check your internet connection. Once Your back the plage will load itself. We cannot promise your previous streaming.Sorry 🥺🥺</p>
+  </div>
 
+  <div class="main">
     <!--  Artist songs-->
     <div class="artist-container">
       <div class="artist-play-search">
@@ -111,14 +115,24 @@
     </div>
   </div>
 
-  <div class="allArtists">
-    <h1>Artists</h1>
-    <input type="text" id="artist-search" placeholder="🔎 Search Artist ...">
-    <div class="allArtist-space">
-      <ul></ul>
+  <div class="recent-music-allArtist">
+    <div class="allArtists">
+      <h1>Artists</h1>
+      <input type="text" id="artist-search" placeholder="🔎 Search Artist ...">
+      <div class="allArtist-space">
+        <ul></ul>
+      </div>
+    </div>
+    <div class="recent-music">
+      <h4 class="recent-title">Recent Streming</h4>
+      <ul>
+        <li>Upcoming...</li>
+      </ul>
     </div>
   </div>
 
+  <!-- InternetConnection -->
+  <script src="InternetConnection.js"></script>
   <!--Wavesurfer Api Cdn-->
   <script src="https://unpkg.com/wavesurfer.js"></script>
   <!--Data.js-->
