@@ -119,9 +119,10 @@ window.addEventListener("DOMContentLoaded", () => {
       listItem.dataset.src = `${song.src}.mp3`;
       listItem.dataset.artist = song.artist;
       listItem.dataset.img = `${song.img}.jpeg`;
-      listItem.dataset.index = index;
+      listItem.dataset.index = allmusic.findIndex((item) => item === song);
       listItem.addEventListener("click", () => {
-        loadMusic(index);
+        const clickedIndex = parseInt(listItem.dataset.index); 
+        loadMusic(clickedIndex);
         wavesurfer.load(`${song.src}.mp3`);
         wavesurfer.setTime(0);
         wavesurfer.once("ready", () => {
@@ -132,16 +133,27 @@ window.addEventListener("DOMContentLoaded", () => {
       songList.appendChild(listItem);
     });
   });
+
+  // Initialize the recent streaming list when the page loads
+  const recentSongs = JSON.parse(sessionStorage.getItem('recentSongs')) || [];
+    recentSongs.forEach(song => {
+        addToRecentStreaming(song.artist, song.song);
+    });
 });
 
 // Event listener for play/pause button
 playPauseBtn.addEventListener("click", () => {
   if (wavesurfer.isPlaying()) {
-    wavesurfer.pause();
+      wavesurfer.pause();
   } else {
-    wavesurfer.play();
+      wavesurfer.play();
   }
   updatePlayPauseButton();
+
+  const artist = allmusic[music_index].artist;
+  const song = allmusic[music_index].name;
+
+  storeRecentSong(artist, song);
 });
 
 // Function to update play/pause button state
@@ -351,3 +363,84 @@ function downloadMusic() {
 
 const downloadButton = document.querySelector('.download-button');
 downloadButton.addEventListener('click', downloadMusic);
+
+// Recent song 
+const addToRecentStreaming = (artist, song) => {
+  const recentList = document.querySelector('.recent-music ul');
+  // Remove the song if it already exists in the recent list
+  const existingItem = [...recentList.children].find(item => {
+    return item.dataset.artist === artist && item.dataset.song === song;
+  });
+  if (existingItem) {
+    recentList.removeChild(existingItem);
+  }
+  // Add the song to the beginning of the recent list
+  const listItem = document.createElement('li');
+  listItem.textContent = `${artist} - ${song}`;
+  listItem.dataset.artist = artist;
+  listItem.dataset.song = song;
+  listItem.addEventListener('click', () => {
+    const clickedArtist = listItem.dataset.artist;
+    const clickedSong = listItem.dataset.song;
+    const clickedIndex = allmusic.findIndex(song => song.artist === clickedArtist && song.name === clickedSong);
+    if (clickedIndex !== -1) {
+      loadAndPlayMusic(clickedIndex);
+    }
+  });
+  recentList.insertBefore(listItem, recentList.firstChild); // Insert at the beginning
+}
+
+const storeRecentSong = (artist, song) => {
+  if (typeof(Storage) !== 'undefined') {
+    let recentSongs = JSON.parse(sessionStorage.getItem('recentSongs')) || [];
+    const index = recentSongs.findIndex(item => item.artist === artist && item.song === song);
+    if (index !== -1) {
+      // If the song already exists, remove it
+      recentSongs.splice(index, 1);
+    }
+    // Add the song to the beginning of the recent songs array
+    recentSongs.unshift({ artist, song });
+    sessionStorage.setItem('recentSongs', JSON.stringify(recentSongs));
+    addToRecentStreaming(artist, song);
+  } else {
+    console.error('Session storage is not supported.');
+  }
+}
+
+// Function to play a song at a given index
+function playSongAtIndex(index) {
+  loadAndPlayMusic(index);
+
+  // Retrieve artist and song name for the current index
+  const artist = allmusic[index].artist;
+  const song = allmusic[index].name;
+
+  // Store the current song in recent streaming
+  storeRecentSong(artist, song);
+}
+
+// Event listener for when a song is clicked from the song list
+songList.addEventListener("click", (event) => {
+  if (event.target.tagName === "LI") {
+      const index = parseInt(event.target.dataset.index);
+      playSongAtIndex(index);
+  }
+});
+
+// Event listener for next song button
+nextSongBtn.addEventListener("click", () => {
+  music_index++;
+  if (music_index >= allmusic.length) {
+      music_index = 0;
+  }
+  playSongAtIndex(music_index);
+});
+
+// Event listener for previous song button
+prevSongBtn.addEventListener("click", () => {
+  music_index--;
+  if (music_index < 0) {
+      music_index = allmusic.length - 1;
+  }
+  playSongAtIndex(music_index);
+});
