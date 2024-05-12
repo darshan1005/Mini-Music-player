@@ -42,7 +42,7 @@
 ## update v.2.1 : Artist List & Music list, playAll/StopALL
 ![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/9df7873f-0881-4927-b7fc-fd24df43aa70)
 ![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/38393940-8242-4941-b7f5-1589ebbc17e2)
-## update v.2.1 : New Loader, Updated Recent Streaming Feature.
+## update v.2.2 : New Loader, Updated Recent Streaming Feature.
 ![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/5b528526-9923-4e45-8eec-5aa5029838b1)
 ![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/6a6a5d63-031c-4502-978c-f044458e49d1)
 
