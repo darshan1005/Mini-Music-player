@@ -57,11 +57,11 @@ body {
 
 /* internet issue */
 .internet-issue-message {
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color: #000000;
+    color: #ffffff;
     padding: 20px;
     margin: 20px;
-    border: 1px solid #f5c6cb;
+    border: 1px solid #ffffff;
     border-radius: 5px;
     display: none;
   }
@@ -76,6 +76,12 @@ body {
     margin-bottom: 0;
   }
   
+  /* loading */
+  .loading{
+    display: none;
+    margin: 0 auto;
+    width: 25rem;
+  }
 
 /* main DIV */
 .main{
@@ -91,7 +97,6 @@ body {
     height: 26rem;
     width: 18rem;
     background: transparent;
-    overflow-y: auto;
 }
 
 .artist-song-search{
@@ -115,6 +120,11 @@ body {
 .artist-container::-webkit-scrollbar,
 .artist-list::-webkit-scrollbar {
     display: none;
+}
+
+.artist-container .artist-list{
+    overflow-y: auto;
+    max-height: 23.1rem;
 }
 
 .artist-list ul {
@@ -469,7 +479,7 @@ body {
 }
 
 .allArtists{
-    width: 80%;
+    width: 75%;
     height: max-content;
     background: transparent;
     text-align: center;
@@ -514,10 +524,14 @@ body {
 }
 
 .recent-music{
-    width: 15rem;
+    width: 20rem;
     height: 19.5rem;
     background: transparent;
     border: 1px solid white;
+}
+
+.recent-music .recent-list::-webkit-scrollbar{
+    display: none;
 }
 
 .recent-music .recent-title{
@@ -529,9 +543,24 @@ body {
     align-items: center;
 }
 
-.recent-music ul{
-    color: gray;
+.recent-music .recent-list {
+    overflow-y: auto; 
+    max-height: 17.4rem;
+}
+
+
+.recent-music .recent-list ul>li{
+    background: white;
+    color: black;
     padding: 7px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: medium;
+}
+
+.recent-music .recent-list ul>li:hover{
+    transition: .3s ease;
+    background-color: lightcoral;
 }
 
 /*screens up to 1440px (Laptop) */
