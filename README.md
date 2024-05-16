@@ -11,8 +11,8 @@
 - volume (Buttons & Inputs ) : working
 - Artist Music List : Working
 - Recent Streaming : working
-- Fav List(Click to play) : Working
-- Artist List search(Search with Full name) : Working
+- Fav List (Click to play) : Working
+- Artist List search : Working
 
 ## UI Updates : UpComing
 - Loop 
@@ -52,6 +52,5 @@
 ![image](https://github.com/darshan1005/Unlimited-Music/assets/114302987/68fa3434-c065-4b5a-b986-823623bad855)
 ## update v.2.4 : Artist Search
 ![image](https://github.com/darshan1005/Unlimited-Music/assets/114302987/88fe35cb-f6c6-41e0-a3c4-14ad8a19a49b)
-
 
 ### upcomming update : Full resposive, Online streaming (Music appication)
