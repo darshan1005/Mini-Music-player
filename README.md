@@ -51,6 +51,6 @@
 ## update v.2.3 : FavSongs list
 ![image](https://github.com/darshan1005/Unlimited-Music/assets/114302987/68fa3434-c065-4b5a-b986-823623bad855)
 ## update v.2.4 : Artist Search
-![image](https://github.com/darshan1005/Unlimited-Music/assets/114302987/88fe35cb-f6c6-41e0-a3c4-14ad8a19a49b)
+![image](https://github.com/darshan1005/Unlimited-Music/assets/114302987/1056edb4-ce06-43e6-bde4-5b4f08dced00)
 
 ### upcomming update : Full resposive, Online streaming (Music appication)
