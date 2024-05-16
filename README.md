@@ -11,9 +11,9 @@
 - volume (Buttons & Inputs ) : working
 - Artist Music List : Working
 - Recent Streaming : working
+- Fav List(Click to play) : Working
 
 ## UI Updates : UpComing
-- Fav List 
 - Loop 
 - Suffle
 - Artist List search
@@ -47,5 +47,8 @@
 ## update v.2.2 : New Loader, Updated Recent Streaming Feature.
 ![Screenshot 2024-05-12 134135](https://github.com/darshan1005/Mini-Music-player/assets/114302987/4d3d76ad-3e6b-4d5b-a1c7-79f14e8a433a)
 ![image](https://github.com/darshan1005/Mini-Music-player/assets/114302987/6a6a5d63-031c-4502-978c-f044458e49d1)
+## update v.2.3 : FavSongs list
+![image](https://github.com/darshan1005/Unlimited-Music/assets/114302987/68fa3434-c065-4b5a-b986-823623bad855)
 
-### upcomming update : Artist Search, Favorite list, Full resposive, Online streaming (Music appication)
+
+### upcomming update : Artist Search, Full resposive, Online streaming (Music appication)
