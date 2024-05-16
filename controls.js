@@ -227,8 +227,9 @@ document.addEventListener("keydown", (event) => {
   } else if (key === "Enter") {
     // Enter key
     playPauseBtn.click();
-  } else if (key == "m" || key == "M") {
-    volumeIcon.click(); // key m or M
+  } else if (event.shiftKey) {
+    // Shift key
+    volumeIcon.click();
   } else {
     console.log(`Key pressed: ${key}`);
   }

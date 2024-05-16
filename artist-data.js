@@ -1,185 +1,211 @@
-const artistContainer = document.querySelector('.artist-list ul');
-const allArtistsContainer = document.querySelector('.allArtists');
+document.addEventListener('DOMContentLoaded', () => {
+  const artistContainer = document.querySelector('.artist-list ul');
+  const allArtistsContainer = document.querySelector('.allArtists ul');
+  const playAndStopAllButton = document.querySelector('.playAndStopAllMusic');
+  const searchInput = document.querySelector('.artist-search');
+  const searchButton = document.querySelector('.search-button');
+  const artistSpace = document.querySelector('.allArtist-space');
 
-let artistData = [
-  {
-    id: 1,
-    img: 'artist/Libinca.jpg',
-    artistName: 'Libinca',
-    songs: [
-      'music/High School.mp3',
-    ]
-  },
-  {
-    id: 2,
-    img: 'artist/Passenger.jpg',
-    artistName: 'passenger',
-    songs: [
-      'music/Let Her Go.mp3',
-    ]
-  },
-  {
-    id: 3,
-    img: 'artist/Hesham.jpg',
-    artistName: 'Hesham',
-    songs: [
-      'music/Gaaju bomma.mp3',
-      'music/Odiyamma.mp3',
-    ]
-  },
-  {
-    id: 3,
-    img: 'artist/edsheeran.jpg',
-    artistName: 'Ed sheeran',
-    songs: [
-      'music/Bad Habits.mp3',
-      'music/shape-of-you.mp3',
-      'music/shivers.mp3'
-    ]
-  },
-];
+  let artistData = [
+    {
+      id: 1,
+      img: 'artist/Libinca.jpg',
+      artistName: 'Libinca',
+      songs: [
+        'music/High School.mp3',
+      ]
+    },
+    {
+      id: 2,
+      img: 'artist/Passenger.jpg',
+      artistName: 'Passenger',
+      songs: [
+        'music/Let Her Go.mp3',
+      ]
+    },
+    {
+      id: 3,
+      img: 'artist/Hesham.jpg',
+      artistName: 'Hesham',
+      songs: [
+        'music/Gaaju bomma.mp3',
+        'music/Odiyamma.mp3',
+      ]
+    },
+    {
+      id: 4,
+      img: 'artist/edsheeran.jpg',
+      artistName: 'Ed Sheeran',
+      songs: [
+        'music/Bad Habits.mp3',
+        'music/shape-of-you.mp3',
+        'music/shivers.mp3'
+      ]
+    },
+  ];
 
-function renderAllArtists() {
-  const allArtists = document.querySelector('.allArtists ul');
-  allArtists.innerHTML = '';
-  artistData.forEach(artist => {
-    const listItem = document.createElement('li');
-    const image = document.createElement('img');
-    const title = document.createElement('h3');
+  function renderArtists(artists) {
+    allArtistsContainer.innerHTML = '';
+    artists.forEach(artist => {
+      const listItem = document.createElement('li');
+      const image = document.createElement('img');
+      const title = document.createElement('h3');
 
-    image.src = artist.img;
-    image.alt = artist.artistName;
+      image.src = artist.img;
+      image.alt = artist.artistName;
 
-    title.textContent = artist.artistName;
+      title.textContent = artist.artistName;
 
-    image.addEventListener('click', () => {
-      // Display songs and apply grayscale filter
-      displaySongs(artist);
+      image.addEventListener('click', () => {
+        displaySongs(artist);
+      });
+
+      listItem.appendChild(title);
+      listItem.appendChild(image);
+      allArtistsContainer.appendChild(listItem);
     });
+  }
 
-    listItem.appendChild(title);
-    listItem.appendChild(image);
-    allArtists.appendChild(listItem);
-  });
-}
+  function renderAllArtists() {
+    renderArtists(artistData);
+  }
 
-let currentlyPlayingAudio = null;
+  let currentlyPlayingAudio = null;
 
-function displaySongs(artist) {
-  const artistList = document.querySelector('.artist-list ul');
-  artistList.innerHTML = '';
+  function displaySongs(artist) {
+    artistContainer.innerHTML = '';
 
-  // Create an image for the artist
-  const artistImage = document.createElement('img');
-  artistImage.src = artist.img;
-  artistImage.alt = artist.artistName;
-  artistImage.classList.add('artist-image');
+    // Create an image for the artist
+    const artistImage = document.createElement('img');
+    artistImage.src = artist.img;
+    artistImage.alt = artist.artistName;
+    artistImage.classList.add('artist-image');
 
-  // Append the artist image to the artist list
-  artistList.appendChild(artistImage);
+    // Append the artist image to the artist list
+    artistContainer.appendChild(artistImage);
 
-  artist.songs.forEach(songPath => {
-    const audio = document.createElement('audio');
-    audio.src = songPath;
-    audio.controls = true;
+    artist.songs.forEach(songPath => {
+      const audio = document.createElement('audio');
+      audio.src = songPath;
+      audio.controls = true;
 
-    // Extract the music name from the path
-    const musicName = songPath.split('/').pop().split('.mp3')[0];
+      // Extract the music name from the path
+      const musicName = songPath.split('/').pop().split('.mp3')[0];
 
-    const listItem = document.createElement('li');
-    // Create a span element to display the music name
-    const musicNameSpan = document.createElement('span');
-    musicNameSpan.textContent = musicName;
+      const listItem = document.createElement('li');
+      // Create a span element to display the music name
+      const musicNameSpan = document.createElement('span');
+      musicNameSpan.textContent = musicName;
 
-    listItem.appendChild(audio);
-    // Append the music name span to the list item
-    listItem.appendChild(musicNameSpan);
-    artistList.appendChild(listItem);
+      listItem.appendChild(audio);
+      // Append the music name span to the list item
+      listItem.appendChild(musicNameSpan);
+      artistContainer.appendChild(listItem);
 
-    // Add drag event listeners to the audio element
-    audio.addEventListener('dragstart', () => {
-      // Store the current time when dragging starts
-      audio.dataset.dragStartTime = audio.currentTime;
-    });
-
-    audio.addEventListener('dragover', (event) => {
-      event.preventDefault();
-    });
-
-    audio.addEventListener('drop', (event) => {
-      const dropTime = audio.dataset.dragStartTime + event.dataTransfer.getData('text') * 1;
-      audio.currentTime = dropTime;
-    });
-
-    // Add click event listener to the audio element
-    audio.addEventListener('play', () => {
-      if (currentlyPlayingAudio && currentlyPlayingAudio !== audio) {
-        currentlyPlayingAudio.pause(); // Pause previously playing audio
-        setTimeout(() => {
-          currentlyPlayingAudio.parentElement.classList.remove('playing'); // Remove playing class from previous audio's parent
+      // Add click event listener to the audio element
+      audio.addEventListener('play', () => {
+        if (currentlyPlayingAudio && currentlyPlayingAudio !== audio) {
+          currentlyPlayingAudio.pause(); // Pause previously playing audio
+          setTimeout(() => {
+            currentlyPlayingAudio.parentElement.classList.remove('playing'); // Remove playing class from previous audio's parent
+            currentlyPlayingAudio = audio;
+            currentlyPlayingAudio.parentElement.classList.add('playing'); // Add playing class to current audio's parent
+          }, 50); // Adjust the delay as needed
+        } else {
           currentlyPlayingAudio = audio;
           currentlyPlayingAudio.parentElement.classList.add('playing'); // Add playing class to current audio's parent
-        }, 50); // Adjust the delay as needed
-      } else {
-        currentlyPlayingAudio = audio;
-        currentlyPlayingAudio.parentElement.classList.add('playing'); // Add playing class to current audio's parent
-      }
+        }
+      });
+
+      // Add event listener to pause event
+      audio.addEventListener('pause', () => {
+        if (currentlyPlayingAudio) {
+          currentlyPlayingAudio.parentElement.classList.remove('playing'); // Remove playing class when audio is paused
+        }
+      });
     });
-
-    // Add event listener to pause event
-    audio.addEventListener('pause', () => {
-      currentlyPlayingAudio.parentElement.classList.remove('playing'); // Remove playing class when audio is paused
-    });
-  });
-}
-
-renderAllArtists();
-
-function playAllSongs() {
-  const artistList = document.querySelector('.artist-list ul');
-  const songs = artistList.querySelectorAll('audio');
-
-  if (songs.length === 0) {
-    return;
   }
 
-  let currentIndex = 0;
+  function playAllSongs() {
+    const songs = artistContainer.querySelectorAll('audio');
 
-  songs[currentIndex].play();
-
-  songs[currentIndex].addEventListener('ended', () => {
-    currentIndex++;
-    if (currentIndex < songs.length) {
-      songs[currentIndex].play();
-    } else {
-      currentIndex = 0;
+    if (songs.length === 0) {
+      return;
     }
-  });
-}
 
-const playAndStopAllButton = document.querySelector('.playAndStopAllMusic');
-function stopAllSongs() {
-  const artistList = document.querySelector('.artist-list ul');
-  const songs = artistList.querySelectorAll('audio');
+    let currentIndex = 0;
 
-  songs.forEach(song => {
-    song.pause();
-    song.currentTime = 0;
-  });
-}
+    const playNextSong = () => {
+      if (currentIndex < songs.length) {
+        songs[currentIndex].play();
+        songs[currentIndex].addEventListener('ended', playNextSong, { once: true });
+        currentIndex++;
+      } else {
+        currentIndex = 0;
+        isPlayingAll = false;
+        playAndStopAllButton.innerHTML = 'Play All Songs';
+      }
+    };
 
-let isPlayingAll = false;
-
-function togglePlayAll() {
-  if (isPlayingAll) {
-    stopAllSongs();
-    isPlayingAll = false;
-    playAndStopAllButton.innerHTML = 'Play All';
-  } else {
-    playAllSongs();
-    isPlayingAll = true;
-    playAndStopAllButton.innerHTML = 'Stop All';
+    playNextSong();
   }
-}
 
-playAndStopAllButton.addEventListener('click', togglePlayAll);
+  function stopAllSongs() {
+    const songs = artistContainer.querySelectorAll('audio');
+
+    songs.forEach(song => {
+      song.pause();
+      song.currentTime = 0;
+    });
+  }
+
+  let isPlayingAll = false;
+
+  function togglePlayAll() {
+    if (isPlayingAll) {
+      stopAllSongs();
+      isPlayingAll = false;
+      playAndStopAllButton.innerHTML = 'Play All Songs';
+    } else {
+      playAllSongs();
+      isPlayingAll = true;
+      playAndStopAllButton.innerHTML = 'Stop All Songs';
+    }
+  }
+
+  playAndStopAllButton.addEventListener('click', togglePlayAll);
+
+  // Search functionality for artists
+  function searchArtists(query) {
+    const searchTerm = query.toLowerCase();
+    const filteredArtists = artistData.filter(artist => {
+      return artist.artistName.toLowerCase().includes(searchTerm);
+    });
+    return filteredArtists;
+  }
+
+  // Function to performSearch for the artist
+  function performSearch() {
+    const searchTerm = searchInput.value.trim();
+    if (searchTerm !== '') {
+      const filteredArtists = searchArtists(searchTerm);
+      if (filteredArtists.length > 0) {
+        renderArtists(filteredArtists);
+      } else {
+        // Display a message indicating no matching artists found
+        allArtistsContainer.innerHTML = '<p>No matching artists found.</p>';
+      }
+    } else {
+      // If the search input is empty, render all artists
+      renderAllArtists();
+    }
+    stopAllSongs(); // Ensure all songs are stopped when a new search is made
+    isPlayingAll = false; // Reset playAll state
+    playAndStopAllButton.innerHTML = 'Play All Songs'; // Reset button text
+  }
+
+  // Event listener for the search input keyup to trigger search on key press
+  searchInput.addEventListener('keyup', performSearch);
+
+  renderAllArtists();
+});

@@ -504,7 +504,7 @@ body {
     color: white;
 }
 
-.allArtists #artist-search{
+.allArtists .artist-search{
     all: unset;
     border-radius: 4px;
     border: 1px solid rgba(255, 255, 255, 0.8);
@@ -515,7 +515,7 @@ body {
     text-align: left;
 }
 
-.allArtists #artist-search::placeholder{
+.allArtists .artist-search::placeholder{
     color: white;
 }
 
@@ -540,6 +540,8 @@ body {
     box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.589);
 }
 
+
+/* recent streaming */
 .recent-music{
     width: 20rem;
     height: 19.5rem;
