@@ -27,15 +27,17 @@
   </div>
 
   <div id="internetIssueMessage" class="internet-issue-message">
-    <h2>🛜🛜🛜🛜 Internet Interruption</h2>
-    <p>Oops! It seems you are offline. Please check your internet connection. Once Your back the plage will load itself. We cannot promise your previous streaming.Sorry 🥺🥺</p>
+    <img class="loading" src="images/loading-1.gif" alt="">
+    <span>
+    <h2>🛜 Internet Interruption</h2>
+    <p>Oops! It seems you are offline. Please check your internet connection. Once Your back the plage will load itself. Sorry 🥺🥺.</p></span>
   </div>
 
   <div class="main">
     <!--  Artist songs-->
     <div class="artist-container">
       <div class="artist-play-search">
-        <button class="playAndStopAllMusic">PLay All</button>
+        <button class="playAndStopAllMusic">PLayAll Songs</button>
       </div>
       <div class="artist-list">
         <ul class="artist"></ul>
@@ -108,11 +110,11 @@
 
     <!-- Fav Songs -->
     <div class="fav-songs">
-      <h4 class="fav-title">Favourite Songs</h4>
-        <ul>
-          <li>Upcoming.....</li>
-        </ul>
-    </div>
+      <h4 class="fav-title" >Favorites</h4>
+      <div class="fav-scroll">
+        <ul id="fav-song-list"></ul>
+      </div>
+    </div>    
   </div>
 
   <div class="recent-music-allArtist">
@@ -124,10 +126,10 @@
       </div>
     </div>
     <div class="recent-music">
-      <h4 class="recent-title">Recent Streming</h4>
-      <ul>
-        <li>Upcoming...</li>
-      </ul>
+      <h4 class="recent-title">Recent Streaming</h4>
+      <div class="recent-list">
+        <ul></ul>
+      </div>
     </div>
   </div>
 

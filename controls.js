@@ -436,11 +436,76 @@ nextSongBtn.addEventListener("click", () => {
   playSongAtIndex(music_index);
 });
 
-// Event listener for previous song button
-prevSongBtn.addEventListener("click", () => {
-  music_index--;
-  if (music_index < 0) {
-      music_index = allmusic.length - 1;
+
+// fav songs
+const favSongList = document.getElementById('fav-song-list');
+// Event listener for double-clicking on a song in the list
+songList.addEventListener("dblclick", (event) => {
+  if (event.target.tagName === "LI") {
+    const index = parseInt(event.target.dataset.index);
+    const songItem = event.target;
+
+    // Toggle the favSong property of the clicked song
+    allmusic[index].favSong = !allmusic[index].favSong;
+
+    // Add or remove the "FAV" tag based on the favSong property
+    if (allmusic[index].favSong) {
+      // If the song is marked as favorite, add the "FAV" tag
+      const favTag = document.createElement("span");
+      favTag.classList.add("fav-tag");
+      favTag.textContent = "❣️";
+      songItem.appendChild(favTag);
+
+      // Add the song to the "Favourite Songs" list
+      const favSongItem = document.createElement("li");
+      favSongItem.textContent = allmusic[index].name;
+      favSongItem.dataset.index = index; // Add index to identify the song
+      favSongList.appendChild(favSongItem);
+    } else {
+      // If the song is not marked as favorite, remove the "FAV" tag
+      const favTag = songItem.querySelector(".fav-tag");
+      if (favTag) {
+        songItem.removeChild(favTag);
+      }
+
+      // Remove the song from the "Favourite Songs" list
+      const favSongItem = favSongList.querySelector(`li[data-index="${index}"]`);
+      if (favSongItem) {
+        favSongList.removeChild(favSongItem);
+      }
+    }
   }
-  playSongAtIndex(music_index);
+});
+
+// Event listener for clicking on the "FAV" tag to remove a song from the fav list
+songList.addEventListener("click", (event) => {
+  if (event.target.classList.contains("fav-tag")) {
+    const listItem = event.target.parentElement;
+    const index = parseInt(listItem.dataset.index);
+
+    // Toggle the favSong property of the clicked song
+    allmusic[index].favSong = !allmusic[index].favSong;
+
+    // Remove the "FAV" tag from the list item
+    listItem.removeChild(event.target);
+
+    // Remove the song from the fav-song list
+    const favSongItem = favSongList.querySelector(`li[data-index="${index}"]`);
+    if (favSongItem) {
+      favSongList.removeChild(favSongItem);
+    }
+  }
+});
+
+// Event listener for clicking on a song in the fav-song list to play it
+favSongList.addEventListener("click", (event) => {
+  if (event.target.tagName === "LI") {
+    const index = parseInt(event.target.dataset.index);
+    playSongAtIndex(index);
+
+    // Add the played song to the recent streaming list
+    const artist = allmusic[index].artist;
+    const song = allmusic[index].name;
+    storeRecentSong(artist, song);
+  }
 });
