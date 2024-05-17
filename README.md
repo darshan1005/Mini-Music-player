@@ -14,13 +14,12 @@
 - Fav List (Click to play) : Working
 - Artist List search : Working
 - Responsive (mobile, laptop) : working
+- Home page
 
 ## UI Updates : UpComing
 - Loop 
 - Suffle
-
 - Login/Register
-- Home Page
 
 ## Keys
 - ➡️⬅️ -> change songs
@@ -57,4 +56,4 @@
 ![image](https://github.com/darshan1005/Unlimited-Music/assets/114302987/218cffed-1771-4c87-9f27-34383a0c54f7)
 
 
-### upcomming update :DB, Online streaming (Music appication)
+### upcomming update :login/signup, DB, Online streaming (Music appication)
