@@ -21,8 +21,8 @@
   <div class="nav-bar">
     <img src="./images/unlimited-music.svg" alt="unlimited-music">
     <div class="login-home">
-      <a href="#" class="nav-link"> <i class="fa fa-home" aria-hidden="true"></i></a>
-      <button type="button" class="login-btn">Log In ⬇️&nbsp;/&nbsp;Sign up ⬆️</button>
+      <a href="Home.html" class="nav-link"> <i class="fa fa-home" aria-hidden="true"></i></a>
+      <button type="button" class="login-btn">Log In/Sign up</button>
     </div>
   </div>
 
@@ -34,15 +34,62 @@
   </div>
 
   <div class="main">
-    <!--  Artist songs-->
-    <div class="artist-container">
-      <div class="artist-play-search">
-        <button class="playAndStopAllMusic">PLayAll Songs</button>
-      </div>
-      <div class="artist-list">
-        <ul class="artist"></ul>
-      </div>
-    </div>
+        <!-- Main music panel -->
+        <div class="container">
+          <!-- music Head -->
+          <div class="music-head">
+            <div class="img-box"><img src="" alt="" /></div>
+    
+            <div class="music-info">
+              <h4 class="song-name">Song: <span class="song">Song-name</span></h4>
+              <h4 class="artist-name">
+                Artist: <span class="artist">Song-artist</span>
+              </h4>
+              <div class="download-repeat-btn">
+                <button class="download-button btn">
+                  &nbsp;<i class="fa-solid fa-download"></i>&nbsp;Download
+                </button>
+                <button class="repeat-btn btn">
+                  &nbsp;<i class="fa-solid fa-redo"></i>&nbsp;Repeat
+                </button>
+              </div>
+            </div>
+            <!-- Music Controlles -->
+            <div class="btns-box">
+              <button class="prev-btn">
+                <i class="fa-solid fa-backward-step"></i>
+              </button>
+              <button class="play-pause-btn play">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button class="next-btn">
+                <i class="fa-solid fa-forward-step"></i>
+              </button>
+            </div>
+          </div>
+          <!-- Waveform & Volume -->
+          <div class="music-body">
+            <div class="waveform-box">
+              <span class="current-time">0:00</span>
+              <div id="waveform">
+                <input type="range" for="waveform" id="song-slider" min="0" max="100" step="0.1" value="0" />
+              </div>
+              <span class="total-time">0:00</span>
+            </div>
+    
+            <div class="volume-box">
+              <i class="material-icons volume-icon"> volume_up</i>
+              <span><i class="material-icons volume-btn volume-decre">remove</i></span>
+              <input type="range" min="0" max="1" step="0.1" />
+              <span><i class="material-icons volume-btn volume-incre">add</i></span>
+            </div>
+    
+            <p class="instructions">
+              Keys: Use ➡️⬅️ to change songs|⬆️⬇️ to operate 🔊|shift to 🔇|Enter or
+              SpaceBar to ⏯️▶️
+            </p>
+          </div>
+        </div>
 
     <!-- Music List -->
     <div class="List-aside">
@@ -52,61 +99,16 @@
       </div>
     </div>
 
-    <div class="container">
-      <!-- music Head -->
-      <div class="music-head">
-        <div class="img-box"><img src="" alt="" /></div>
-
-        <div class="music-info">
-          <h4 class="song-name">Song: <span class="song">Song-name</span></h4>
-          <h4 class="artist-name">
-            Artist: <span class="artist">Song-artist</span>
-          </h4>
-          <div class="download-repeat-btn">
-            <button class="download-button btn">
-              &nbsp;<i class="fa-solid fa-download"></i>&nbsp;Download
-            </button>
-            <button class="repeat-btn btn">
-              &nbsp;<i class="fa-solid fa-redo"></i>&nbsp;Repeat
-            </button>
-          </div>
-        </div>
-        <!-- Music Controlles -->
-        <div class="btns-box">
-          <button class="prev-btn">
-            <i class="fa-solid fa-backward-step"></i>
-          </button>
-          <button class="play-pause-btn play">
-            <i class="fa-solid fa-play"></i>
-          </button>
-          <button class="next-btn">
-            <i class="fa-solid fa-forward-step"></i>
-          </button>
-        </div>
+    <!--  Artist songs-->
+    <div class="artist-container">
+      <div class="artist-play-All">
+        <button class="playAndStopAllMusic">PLayAll Songs</button>
       </div>
-      <!-- Waveform & Volume -->
-      <div class="music-body">
-        <div class="waveform-box">
-          <span class="current-time">0:00</span>
-          <div id="waveform">
-            <input type="range" for="waveform" id="song-slider" min="0" max="100" step="0.1" value="0" />
-          </div>
-          <span class="total-time">0:00</span>
-        </div>
-
-        <div class="volume-box">
-          <i class="material-icons volume-icon"> volume_up</i>
-          <span><i class="material-icons volume-btn volume-decre">remove</i></span>
-          <input type="range" min="0" max="1" step="0.1" />
-          <span><i class="material-icons volume-btn volume-incre">add</i></span>
-        </div>
-
-        <p class="instructions">
-          Keys: Use ➡️⬅️ to change songs|⬆️⬇️ to operate 🔊|shift to 🔇|Enter or
-          SpaceBar to ⏯️▶️
-        </p>
+      <div class="artist-list">
+        <ul class="artist"></ul>
       </div>
     </div>
+
 
     <!-- Fav Songs -->
     <div class="fav-songs">
@@ -120,7 +122,7 @@
   <!-- Artist  -->
   <div class="recent-music-allArtist">
     <div class="allArtists">
-      <h1>Artists</h1>
+      <h2>Artists</h2>
       <input type="text" class="artist-search" placeholder="🔎 Search Artist ...">
       <div class="allArtist-space">
         <ul></ul>

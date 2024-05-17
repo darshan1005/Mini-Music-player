@@ -6,6 +6,7 @@ function checkInternetConnection() {
     // The browser is offline, display the message
     console.log("No internet connection detected");
     document.getElementById("internetIssueMessage").style.display = "block";
+    document.querySelector('.loading').style.display = 'block';
   }
 }
 
@@ -15,7 +16,7 @@ checkInternetConnection();
 // Add event listener for online/offline events
 window.addEventListener('online', () => {
   console.log('Internet connection established');
-  document.getElementById('internetIssueMessage').innerText = "You're back online!";
+  document.getElementById('internetIssueMessage').innerText = "✅Hurry! You're back online";
   document.getElementById('internetIssueMessage').style.color = 'black';
   document.getElementById('internetIssueMessage').style.background = 'lightgreen'
   setTimeout(() => {
@@ -26,5 +27,6 @@ window.addEventListener('online', () => {
 window.addEventListener("offline", () => {
   console.log("Internet connection lost");
   // Check for internet connection when it's lost
+  window.location.reload();
   checkInternetConnection();
 });
