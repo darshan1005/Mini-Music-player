@@ -24,7 +24,7 @@
 ## Keys
 - ➡️⬅️ -> change songs
 - ⬆️⬇️ -> 🔊
-- M ->🔇(mute)
+- shift ->🔇(mute)
 - Enter or SpaceBar -> ⏯️▶️
 
 ### *Need Collaboration* Email-me: battuladarshan7838@gmail.com
