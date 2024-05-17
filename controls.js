@@ -85,7 +85,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // Populate the initial song list
   allmusic.forEach((song, index) => {
     const listItem = document.createElement("li");
-    listItem.textContent = song.name;
+    listItem.textContent = `${song.name} - ${song.artist}`;
     listItem.dataset.src = `${song.src}.mp3`;
     listItem.dataset.artist = song.artist;
     listItem.dataset.img = `${song.img}.jpeg`;
@@ -106,7 +106,10 @@ window.addEventListener("DOMContentLoaded", () => {
   searchInput.addEventListener("input", () => {
     const searchTerm = searchInput.value.toLowerCase();
     const filteredSongs = allmusic.filter((song) => {
-      return song.name.toLowerCase().includes(searchTerm);
+      return (
+        song.name.toLowerCase().includes(searchTerm)||
+        song.artist.toLowerCase().includes(searchTerm)
+      );
     });
 
     // Clear the existing song list
@@ -115,7 +118,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // Populate the song list with filtered songs
     filteredSongs.forEach((song, index) => {
       const listItem = document.createElement("li");
-      listItem.textContent = song.name;
+      listItem.textContent = `${song.name} - ${song.artist}`
       listItem.dataset.src = `${song.src}.mp3`;
       listItem.dataset.artist = song.artist;
       listItem.dataset.img = `${song.img}.jpeg`;
@@ -459,7 +462,7 @@ songList.addEventListener("dblclick", (event) => {
 
       // Add the song to the "Favourite Songs" list
       const favSongItem = document.createElement("li");
-      favSongItem.textContent = allmusic[index].name;
+      favSongItem.textContent = `${allmusic[index].name}-${allmusic[index].artist}`;
       favSongItem.dataset.index = index; // Add index to identify the song
       favSongList.appendChild(favSongItem);
     } else {
