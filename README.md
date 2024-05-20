@@ -57,6 +57,4 @@
 ## update v.2.2 : Login Page UI
 ![image](https://github.com/darshan1005/Unlimited-Music/assets/114302987/595d0e79-b892-48f7-ba65-a2c0a33c73ae)
 
-
-
-### upcomming update :login/signup, DB, Online streaming (Music appication)
+### upcomming update :login/signup with Authentication, DB, API's, Online streaming (Music appication)
