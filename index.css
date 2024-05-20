@@ -400,7 +400,6 @@ footer .email-form {
 
   /* circle text */
   .circle {
-    /* position: relative; */
     width: 200px;
     height: 200px;
     border-radius: 100vmax;
@@ -615,5 +614,21 @@ footer .email-form {
     height: 80px;
     padding: 18px;
     font-weight: 500;
+  }
+}
+
+@media screen and (min-width: 375px) {
+  .title-content {
+    margin-top: 2rem;
+  }
+
+  .three-d-radio{
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .three-d-radio{
+    margin-bottom: 3rem;
   }
 }

@@ -32,10 +32,10 @@
 
           <label for="username">Username</label>
           <input type="text" placeholder="What is your name ?" id="username" />
-          <label for="username">Phone No</label>
+          <label for="phoneNumber">Phone No</label>
           <input type="text" placeholder="+91 9XXXXXXXX0" id="phoneNumber" />
 
-          <label for="password">Email</label>
+          <label for="email">Email</label>
           <input type="email" placeholder="xyz@gmail.com" id="password" />
           <button>Register</button>
           <p class="or">Or</p>
@@ -49,15 +49,18 @@
       <div class="Login" id="login">
         <form>
           <h3>LogIn</h3>
-          <label for="username">Email</label>
+          <label for="email">Email</label>
           <input type="email" placeholder="xyz@gmail.com" id="email" />
           <button>Login</button>
         </form>
         <form class="otp">
+          <label for="username">Otp Verification</label>
           <input type="text" placeholder="enter OTP">
           <button>Verify</button>
         </form>
       </div>
     </div>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </body>
 </html>

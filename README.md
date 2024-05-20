@@ -1,4 +1,4 @@
-# Muisc-player 📻 [UNLIMITED MUSIC](https://darshan1005.github.io/Unlimited-Music/)
+# Muisc-player 📻 UNLIMITED MUSIC
 #### Created By Darshan
 ![unlimited-music](https://github.com/darshan1005/Mini-Music-player/assets/114302987/31f78077-50e7-4617-9901-3553c75e2977)
 
