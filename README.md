@@ -54,6 +54,9 @@
 ![image](https://github.com/darshan1005/Unlimited-Music/assets/114302987/1056edb4-ce06-43e6-bde4-5b4f08dced00)
 ## update v.2.1 : Home Page
 ![image](https://github.com/darshan1005/Unlimited-Music/assets/114302987/218cffed-1771-4c87-9f27-34383a0c54f7)
+## update v.2.2 : Login Page UI
+![image](https://github.com/darshan1005/Unlimited-Music/assets/114302987/595d0e79-b892-48f7-ba65-a2c0a33c73ae)
+
 
 
 ### upcomming update :login/signup, DB, Online streaming (Music appication)
