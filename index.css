@@ -350,6 +350,11 @@ footer .email-form {
     margin-top: 0rem;
     height: 100px;
   }
+  .three-d-radio img{
+    display: flex;
+    margin: 0 auto;
+    width: 60%;
+  }
   footer .email {
     font-size: 12px;
   }
