@@ -104,7 +104,6 @@ body {
 
 .container .music-head {
     background: rgb(255, 240, 219);
-    ;
     height: 100px;
     width: 100%;
     display: flex;
@@ -796,7 +795,6 @@ body {
 
     .container .music-head {
         background: rgb(255, 240, 219);
-        ;
         height: 180px;
         width: 100%;
         display: flex;
@@ -1149,4 +1147,47 @@ body {
 @media (min-width: 768px) {}
 
 /* Mobile */
-@media only screen and (min-width: 480px) {}
+@media screen and (min-width: 425px) {
+    .container .music-head .btns-box button {
+        height: 40px;
+        width: 40px;
+    }
+
+    .container .music-head .btns-box .play-pause-btn {
+        height: 35px;
+        width: 35px;
+    }
+}
+/* mobile - L */
+@media screen and (min-width: 375px) {
+
+    .container .music-body .waveform-box #song-slider {
+        width: 240px;
+    }
+
+    .container .music-body .waveform-box #waveform {
+        width: 240px;
+    }
+
+    .container .music-head .img-box {
+        height: 75px;
+        width: 75px;
+    }
+
+    .container .music-head .img-box img {
+        height: 55px;
+        width: 55px;
+        border-radius: 100%;
+        object-fit: cover;
+    }
+
+    .container .music-head .btns-box button {
+        height: 40px;
+        width: 40px;
+    }
+
+    .container .music-head .btns-box .play-pause-btn {
+        height: 35px;
+        width: 35px;
+    }
+}
