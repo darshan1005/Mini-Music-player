@@ -573,6 +573,59 @@ body {
     background-color: lightcoral;
 }
 
+/* Mobile */
+@media screen and (min-width: 425px) {
+    .container .music-head .btns-box button {
+        height: 40px;
+        width: 40px;
+    }
+
+    .container .music-head .btns-box .play-pause-btn {
+        height: 35px;
+        width: 35px;
+    }
+}
+/* mobile - L */
+@media screen and (min-width: 375px) {
+
+    .nav-bar{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+    .container .music-body .waveform-box #song-slider {
+        width: 240px;
+    }
+
+    .container .music-body .waveform-box #waveform {
+        width: 240px;
+    }
+
+    .container .music-head .img-box {
+        height: 75px;
+        width: 75px;
+    }
+
+    .container .music-head .img-box img {
+        height: 55px;
+        width: 55px;
+    }
+
+    .container .music-head .btns-box button {
+        height: 40px;
+        width: 40px;
+    }
+
+    .container .music-head .btns-box .play-pause-btn {
+        height: 35px;
+        width: 35px;
+    }
+}
+/*screens up to 768px (Mobile - l) */
+@media (min-width: 768px) {}
+/*screens up to 1024px (Tablet) */
+@media (min-width: 1024px) {}
 /*screens up to 1440px (Laptop) */
 @media (min-width: 1440px) {
     .nav-bar {
@@ -1142,58 +1195,3 @@ body {
     }
 }
 
-/*screens up to 1024px (Tablet) */
-@media (min-width: 1024px) {}
-
-/*screens up to 768px (Mobile - l) */
-@media (min-width: 768px) {}
-
-/* Mobile */
-@media screen and (min-width: 425px) {
-    .container .music-head .btns-box button {
-        height: 40px;
-        width: 40px;
-    }
-
-    .container .music-head .btns-box .play-pause-btn {
-        height: 35px;
-        width: 35px;
-    }
-}
-/* mobile - L */
-@media screen and (min-width: 375px) {
-
-    .nav-bar{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0 20px;
-    }
-    .container .music-body .waveform-box #song-slider {
-        width: 240px;
-    }
-
-    .container .music-body .waveform-box #waveform {
-        width: 240px;
-    }
-
-    .container .music-head .img-box {
-        height: 75px;
-        width: 75px;
-    }
-
-    .container .music-head .img-box img {
-        height: 55px;
-        width: 55px;
-    }
-
-    .container .music-head .btns-box button {
-        height: 40px;
-        width: 40px;
-    }
-
-    .container .music-head .btns-box .play-pause-btn {
-        height: 35px;
-        width: 35px;
-    }
-}
