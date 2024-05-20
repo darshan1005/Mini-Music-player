@@ -368,13 +368,13 @@ footer .email-form {
   .hero .hero-body .hero-left .hero-text{
     font-size: 40px;
   }
+
   .hero .hero-body .demo-player{
     width: 300px;
     height: 50px;
-    display: none;
   }
   .hero .hero-body .hero-right .singing-girl{
-    width: 50%;
+    width: 300px;
   }
 
   .hero .hero-body .hero-right .logo-hero{
@@ -556,7 +556,7 @@ footer .email-form {
     transform-origin: 0 100px;
   }
 
-  .hero-text {
+  .hero .hero-body .hero-left .hero-text{
     padding: 40px;
     font-size: 50px;
     color: white;
@@ -574,7 +574,7 @@ footer .email-form {
     justify-content: space-around;
   }
 
-  .demo-player {
+  .hero .hero-body .demo-player {
     display: flex;
     margin: 0 auto;
     background: #9EC8B9;
@@ -615,19 +615,19 @@ footer .email-form {
     margin-top: 35px;
   }
 
-  .hero-right .singing-girl {
-    height: 70%;
-    object-fit: contain;
+  .hero .hero-body .hero-right .singing-girl {
+    width: 70%;
+    height:400px;
   }
 
   .title-content {
     margin-top: 3rem;
     width: 60%;
-    height: 120px;
+    height: 100px;
   }
 
   .title-content img {
-    width: 10rem;
+    width: 150px;
   }
 
   .title-content p {
@@ -637,17 +637,13 @@ footer .email-form {
   .title-content .triangle-3 {
     width: 30px;
     height: 30px;
-    border-left: solid 70px #2C8BA0;
-    border-bottom: solid 40px transparent;
-    border-top: solid 40px transparent;
+    border-left: solid 60px #2C8BA0;
+    border-bottom: solid 30px transparent;
+    border-top: solid 30px transparent;
   }
 
   .about {
     width: 60%;
-  }
-
-  .about p {
-    font-size: larger;
   }
 
   .about .three-d-radio {
