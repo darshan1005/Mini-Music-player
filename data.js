@@ -1,7 +1,7 @@
 let allmusic = [
     {
         index: 1,
-        name: 'By our love',
+        name: 'By Our Love',
         artist: 'Peter Scholtes',
         img: 'images/jesus',
         src: 'music/By Our Love',
