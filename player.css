@@ -25,8 +25,10 @@ body {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    z-index: 99;
-    gap: 3rem;
+    gap: 3rem;  
+    position: sticky;
+    top: 0;
+    z-index: 3;
 }
 
 .nav-bar img {
@@ -1161,6 +1163,12 @@ body {
 /* mobile - L */
 @media screen and (min-width: 375px) {
 
+    .nav-bar{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
     .container .music-body .waveform-box #song-slider {
         width: 240px;
     }
@@ -1177,8 +1185,6 @@ body {
     .container .music-head .img-box img {
         height: 55px;
         width: 55px;
-        border-radius: 100%;
-        object-fit: cover;
     }
 
     .container .music-head .btns-box button {
