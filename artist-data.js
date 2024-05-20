@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const allArtistsContainer = document.querySelector('.allArtists ul');
   const playAndStopAllButton = document.querySelector('.playAndStopAllMusic');
   const searchInput = document.querySelector('.artist-search');
-  const searchButton = document.querySelector('.search-button');
-  const artistSpace = document.querySelector('.allArtist-space');
 
   let artistData = [
     {

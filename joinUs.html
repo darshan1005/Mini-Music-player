@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="joinUs.css" />
+     <!--Material Icons Cdn-->
+     <link
+     href="https://fonts.googleapis.com/icon?family=Material+Icons"
+     rel="stylesheet"
+   />
+    <link rel="icon" href="data:," />
+    <link
+      rel="icon"
+      type="image/svg"
+      sizes="32x32"
+      href="images/unlimited-music.svg"
+    />
+    <title>Register/Login</title>
+  </head>
+
+  <body>
+    <div class="userJoinDiv">
+      <div class="navs">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html" class="nav-link">Player</a>  
+        <a href="#login" class="nav-link login-link">Login</a>  
+      </div>
+      <div class="Register">
+        <form>
+          <h3>Join us</h3>
+
+          <label for="username">Username</label>
+          <input type="text" placeholder="What is your name ?" id="username" />
+          <label for="username">Phone No</label>
+          <input type="text" placeholder="+91 9XXXXXXXX0" id="phoneNumber" />
+
+          <label for="password">Email</label>
+          <input type="email" placeholder="xyz@gmail.com" id="password" />
+          <button>Register</button>
+          <p class="or">Or</p>
+          <div class="social">
+            <div class="go"><i class="fab fa-google"></i> Google</div>
+          </div>
+        </form>
+      </div>
+      <div class="hr">
+      </div>
+      <div class="Login" id="login">
+        <form>
+          <h3>LogIn</h3>
+          <label for="username">Email</label>
+          <input type="email" placeholder="xyz@gmail.com" id="email" />
+          <button>Login</button>
+        </form>
+        <form class="otp">
+          <input type="text" placeholder="enter OTP">
+          <button>Verify</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
