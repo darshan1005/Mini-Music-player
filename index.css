@@ -321,7 +321,103 @@ footer .email-form {
   height: max-content;
   width: 80%;
 }
+/* mobile - m */
+@media screen and (min-width: 375px) {
+  .title-content {
+    margin-top: 2rem;
+  }
 
+  .three-d-radio{
+    margin-bottom: 1rem;
+  }
+}
+
+/* mobile - l */
+@media screen and (min-width: 425px) {
+  .three-d-radio{
+    margin-bottom: 3rem;
+  }
+}
+/* tablet */
+@media screen and (min-width: 768px){
+  .home-section .Nav-bar {
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+  }
+  .hero .hero-body .hero-left .hero-text{
+    font-size: 40px;
+  }
+  .hero .hero-body .demo-player{
+    width: 300px;
+    height: 50px;
+    display: none;
+  }
+  .hero .hero-right{
+    margin-top: 0px;
+  }
+  .hero .hero-body .hero-right .singing-girl{
+    width: 50%;
+  }
+
+  .hero .hero-body .hero-right .logo-hero{
+    width: 280px;
+  }
+
+  .title-content{
+    margin-top: 8rem;
+    height: 100px;
+  }
+
+  .title-content img{
+    height: 150px;
+    width: 150px;
+  }
+
+  .title-content p{
+    font-size: larger;
+  }
+
+  .triangle-3{
+    border-left: solid 50px #2C8BA0;
+    border-bottom: solid 30px transparent;
+    border-top: solid 30px transparent;
+  }
+
+  .about .about-content{
+    font-size: medium;
+  }
+
+  .three-d-radio{
+    height: 115px;
+  }
+
+  .three-d-radio img{
+    width: 400px;
+    display: flex;
+    margin: 0 auto;
+  }
+
+  .support{
+    height: 120px;
+  }
+
+  .support img{
+    height: 100px;
+    width: 100px;
+  }
+
+  .support .support-text{
+    font-size: large;
+  }
+
+  .support .scan{
+    width: 70px;
+    height: 30px;
+    font-size: medium;
+  }
+}
+/* Laptop - l */
 @media screen and (min-width: 1440px) {
   .home-section .Nav-bar {
     display: flex;
@@ -614,21 +710,5 @@ footer .email-form {
     height: 80px;
     padding: 18px;
     font-weight: 500;
-  }
-}
-
-@media screen and (min-width: 375px) {
-  .title-content {
-    margin-top: 2rem;
-  }
-
-  .three-d-radio{
-    margin-bottom: 1rem;
-  }
-}
-
-@media screen and (min-width: 425px) {
-  .three-d-radio{
-    margin-bottom: 3rem;
   }
 }
