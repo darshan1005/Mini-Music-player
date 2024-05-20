@@ -334,8 +334,28 @@ footer .email-form {
 
 /* mobile - l */
 @media screen and (min-width: 425px) {
+  .hero .hero-body .hero-left{
+    margin-bottom: 3rem;
+  }
+  .hero .hero-body .hero-left .hero-text{
+    font-size: x-large;
+  }
+  .hero .hero-body .hero-right .singing-girl{
+    width: 70%;
+  }
   .three-d-radio{
     margin-bottom: 3rem;
+  }
+  .title-content{
+    margin-top: 0rem;
+    height: 100px;
+  }
+  footer .email {
+    font-size: 12px;
+  }
+  
+  footer img {
+    width: 200px;
   }
 }
 /* tablet */
@@ -352,9 +372,6 @@ footer .email-form {
     width: 300px;
     height: 50px;
     display: none;
-  }
-  .hero .hero-right{
-    margin-top: 0px;
   }
   .hero .hero-body .hero-right .singing-girl{
     width: 50%;
