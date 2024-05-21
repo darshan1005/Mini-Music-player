@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
       img: 'artist/Hesham.jpg',
       artistName: 'Hesham',
       songs: [
-        'music/Gaaju bomma.mp3',
+        'music/Gaaju Bomma.mp3',
         'music/Odiyamma.mp3',
       ]
     },
