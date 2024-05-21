@@ -48,7 +48,6 @@ let loadMusic = (index) => {
     navigator.mediaSession.metadata = new MediaMetadata({
       title: allmusic[music_index].name,
       artist: allmusic[music_index].artist,
-      album: 'Album Name', // Replace with actual album name if available
       artwork: [
         { src: `${allmusic[music_index].img}.jpeg`, sizes: '512x512', type: 'image/jpeg' }
       ]
@@ -254,11 +253,22 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-nextSongBtn.addEventListener("click", () => {
-  playNextSong();
-});
+nextSongBtn.addEventListener("click", playNextSong);
 
-prevSongBtn.addEventListener("click", () => {
+prevSongBtn.addEventListener("click", playPrevSong);
+
+// Function to play the next song 
+function playNextSong() {
+  wavesurfer.un("finish", playNextSong); 
+  music_index++;
+  if (music_index >= allmusic.length) {
+    music_index = 0;
+  }
+  loadAndPlayMusic(music_index);
+}
+
+// Function to play the prev song
+function playPrevSong(){
   music_index--;
   music_index < 0
     ? (music_index = songList.children.length - 1)
@@ -271,29 +281,30 @@ prevSongBtn.addEventListener("click", () => {
     wavesurfer.play();
     updatePlayPauseButton()
   });
-});
+}
 
-// MediaSession API handlers
+function loadAndPlayMusic(index) {
+  loadMusic(index);
+  wavesurfer.load(allmusic[index].src + ".mp3");
+  wavesurfer.once("ready", () => {
+    wavesurfer.play();
+    updatePlayPauseButton();
+    wavesurfer.on("finish", playNextSong); 
+  });
+}
+
+// Media Session API event listeners
 if ('mediaSession' in navigator) {
   navigator.mediaSession.setActionHandler('play', () => {
     wavesurfer.play();
-    navigator.mediaSession.playbackState = "playing";
     updatePlayPauseButton();
   });
-
   navigator.mediaSession.setActionHandler('pause', () => {
     wavesurfer.pause();
-    navigator.mediaSession.playbackState = "paused";
     updatePlayPauseButton();
   });
-
-  navigator.mediaSession.setActionHandler('previoustrack', () => {
-    prevSongBtn.click();
-  });
-
-  navigator.mediaSession.setActionHandler('nexttrack', () => {
-    nextSongBtn.click();
-  });
+  navigator.mediaSession.setActionHandler('previoustrack', playPrevSong);
+  navigator.mediaSession.setActionHandler('nexttrack', playNextSong);
 }
 
 volumeInput.addEventListener("input", () => {
@@ -331,12 +342,6 @@ volumeIcon.addEventListener("click", () => {
   }
 });
 
-// Add event listener to repeat button
-repeatBtn.addEventListener("click", () => {
-  shouldRepeat = !shouldRepeat;
-  repeatBtn.classList.toggle("active", shouldRepeat);
-});
-
 function updateButtonState(buttonSelector, isActive) {
   console.log(
     `🎚️ Updating button state for ${buttonSelector}: ${
@@ -351,25 +356,11 @@ function updateButtonState(buttonSelector, isActive) {
   }
 }
 
-// Function to play the next song
-function playNextSong() {
-  wavesurfer.un("finish", playNextSong); 
-  music_index++;
-  if (music_index >= allmusic.length) {
-    music_index = 0;
-  }
-  loadAndPlayMusic(music_index);
-}
-
-function loadAndPlayMusic(index) {
-  loadMusic(index);
-  wavesurfer.load(allmusic[index].src + ".mp3");
-  wavesurfer.once("ready", () => {
-    wavesurfer.play();
-    updatePlayPauseButton();
-    wavesurfer.on("finish", playNextSong); 
-  });
-}
+// Add event listener to repeat button
+repeatBtn.addEventListener("click", () => {
+  shouldRepeat = !shouldRepeat;
+  repeatBtn.classList.toggle("active", shouldRepeat);
+});
 
 let download_music_index = 0;
 function downloadMusic() {
