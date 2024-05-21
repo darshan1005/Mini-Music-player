@@ -35,6 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
+  // Clear session media metadata
+  function clearMediaSession() {
+    if ("mediaSession" in navigator) {
+      navigator.mediaSession.metadata = null;
+      navigator.mediaSession.playbackState = "none";
+    }
+  }
+
   function renderArtists(artists) {
     allArtistsContainer.innerHTML = "";
     artists.forEach((artist) => {
@@ -59,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderAllArtists() {
     renderArtists(artistData);
+    clearMediaSession();
   }
 
   let currentlyPlayingAudio = null;
@@ -121,6 +130,8 @@ document.addEventListener("DOMContentLoaded", () => {
     isPlayingAll = false;
     playAndStopAllButton.innerHTML = "PlayAll Songs";
     navigator.mediaSession.playbackState = "none";
+
+    clearMediaSession();
   }
 
   function updateMediaSession(artist, title, image) {
