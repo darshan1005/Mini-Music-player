@@ -351,6 +351,16 @@ function updateButtonState(buttonSelector, isActive) {
   }
 }
 
+// Function to play the next song
+function playNextSong() {
+  wavesurfer.un("finish", playNextSong); 
+  music_index++;
+  if (music_index >= allmusic.length) {
+    music_index = 0;
+  }
+  loadAndPlayMusic(music_index);
+}
+
 function loadAndPlayMusic(index) {
   loadMusic(index);
   wavesurfer.load(allmusic[index].src + ".mp3");
