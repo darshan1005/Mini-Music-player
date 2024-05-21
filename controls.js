@@ -342,7 +342,7 @@ volumeIcon.addEventListener("click", () => {
   }
 });
 
-function updateButtonState(buttonSelector, isActive) {
+function updateRepeatButtonState(buttonSelector, isActive) {
   console.log(
     `🎚️ Updating button state for ${buttonSelector}: ${
       isActive ? "Activated" : "Deactivated"
