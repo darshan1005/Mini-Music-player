@@ -44,15 +44,7 @@ let loadMusic = (index) => {
   musicImg.src = `${allmusic[music_index].img}.jpeg`;
 
   // Update media session metadata
-  if ('mediaSession' in navigator) {
-    navigator.mediaSession.metadata = new MediaMetadata({
-      title: allmusic[music_index].name,
-      artist: allmusic[music_index].artist,
-      artwork: [
-        { src: `${allmusic[music_index].img}.jpeg`, sizes: '512x512', type: 'image/jpeg' }
-      ]
-    });
-  }
+  updateMediaSession();
 
   wavesurfer.once("ready", () => {
     if (!canAutoPlay) {
@@ -72,6 +64,30 @@ let loadMusic = (index) => {
     }
   });
 };
+
+// Function to update Media Session metadata
+function updateMediaSession() {
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: allmusic[music_index].name,
+      artist: allmusic[music_index].artist,
+      artwork: [
+        { src: `${allmusic[music_index].img}.jpeg`, sizes: '512x512', type: 'image/jpeg' }
+      ]
+    });
+
+    navigator.mediaSession.setActionHandler('play', () => {
+      wavesurfer.play();
+      updatePlayPauseButton();
+    });
+    navigator.mediaSession.setActionHandler('pause', () => {
+      wavesurfer.pause();
+      updatePlayPauseButton();
+    });
+    navigator.mediaSession.setActionHandler('previoustrack', playPrevSong);
+    navigator.mediaSession.setActionHandler('nexttrack', playNextSong);
+  }
+}
 
 // Initialize song slider
 var songSlider = document.getElementById("song-slider");

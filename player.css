@@ -572,20 +572,7 @@ body {
     transition: .3s ease;
     background-color: lightcoral;
 }
-
-/* Mobile */
-@media screen and (min-width: 425px) {
-    .container .music-head .btns-box button {
-        height: 40px;
-        width: 40px;
-    }
-
-    .container .music-head .btns-box .play-pause-btn {
-        height: 35px;
-        width: 35px;
-    }
-}
-/* mobile - L */
+/* mobile - m*/
 @media screen and (min-width: 375px) {
 
     .nav-bar{
@@ -622,6 +609,19 @@ body {
         width: 35px;
     }
 }
+/* Mobile - l*/
+@media screen and (min-width: 425px) {
+    .container .music-head .btns-box button {
+        height: 40px;
+        width: 40px;
+    }
+
+    .container .music-head .btns-box .play-pause-btn {
+        height: 35px;
+        width: 35px;
+    }
+}
+
 /*screens up to 768px (Mobile - l) */
 @media (min-width: 768px) {}
 /*screens up to 1024px (Tablet) */
