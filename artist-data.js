@@ -106,6 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
           currentlyPlayingAudio = audio;
           currentlyPlayingAudio.parentElement.classList.add("playing"); // Add playing class to current audio's parent
         }
+        // Update Media Session metadata
+        updateMediaSession(artist.artistName, musicName, artist.img);
       });
 
       // Add event listener to pause event
@@ -118,7 +120,38 @@ document.addEventListener("DOMContentLoaded", () => {
     // Reset the Play All Songs button
     isPlayingAll = false;
     playAndStopAllButton.innerHTML = "PlayAll Songs";
+    navigator.mediaSession.playbackState = "none";
   }
+
+  function updateMediaSession(artist, title, image) {
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: title,
+        artist: artist,
+        album: isPlayingAll ? 'Playing All' : 'Single Track',
+        artwork: [
+          { src: image, sizes: '512x512', type: 'image/jpeg' }
+        ]
+      });
+  
+      navigator.mediaSession.setActionHandler('play', () => {
+        if (currentlyPlayingAudio) {
+          currentlyPlayingAudio.play();
+          navigator.mediaSession.playbackState = "playing";
+        }
+      });
+      navigator.mediaSession.setActionHandler('pause', () => {
+        if (currentlyPlayingAudio) {
+          currentlyPlayingAudio.pause();
+          navigator.mediaSession.playbackState = "paused";
+        }
+      });
+      
+      // Placeholder handlers for previous and next track
+      navigator.mediaSession.setActionHandler('previoustrack', () => {}); 
+      navigator.mediaSession.setActionHandler('nexttrack', () => {});
+    }
+  }  
 
   function playAllSongs() {
     const songs = artistContainer.querySelectorAll("audio");
@@ -140,6 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
         currentIndex = 0;
         isPlayingAll = false;
         playAndStopAllButton.innerHTML = "PlayAll Songs";
+        navigator.mediaSession.playbackState = "none";
       }
     };
 
