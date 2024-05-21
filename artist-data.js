@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
       img: 'artist/Hesham.jpg',
       artistName: 'Hesham',
       songs: [
-        'music/Gaaju Bomma.mp3',
+        'music/Gaaju bomma.mp3',
         'music/Odiyamma.mp3',
       ]
     },
@@ -113,6 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
           currentlyPlayingAudio = audio;
           currentlyPlayingAudio.parentElement.classList.add('playing'); // Add playing class to current audio's parent
         }
+        // Update Media Session metadata
+        updateMediaSession(artist.artistName, musicName, artist.img);
       });
 
       // Add event listener to pause event
@@ -122,6 +124,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
+  }
+
+  function updateMediaSession(artist, title, image) {
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: title,
+        artist: artist,
+        artwork: [
+          { src: image, sizes: '512x512', type: 'image/jpeg' }
+        ]
+      });
+
+      navigator.mediaSession.setActionHandler('play', () => {
+        if (currentlyPlayingAudio) {
+          currentlyPlayingAudio.play();
+          navigator.mediaSession.playbackState = "playing";
+        }
+      });
+
+      navigator.mediaSession.setActionHandler('pause', () => {
+        if (currentlyPlayingAudio) {
+          currentlyPlayingAudio.pause();
+          navigator.mediaSession.playbackState = "paused";
+        }
+      });
+      
+      navigator.mediaSession.setActionHandler('previoustrack', null);
+      navigator.mediaSession.setActionHandler('nexttrack', null);
+    }
   }
 
   function playAllSongs() {
