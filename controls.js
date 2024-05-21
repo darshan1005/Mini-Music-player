@@ -43,6 +43,18 @@ let loadMusic = (index) => {
   songName.innerHTML = allmusic[music_index].name;
   musicImg.src = `${allmusic[music_index].img}.jpeg`;
 
+  // Update media session metadata
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: allmusic[music_index].name,
+      artist: allmusic[music_index].artist,
+      album: 'Album Name', // Replace with actual album name if available
+      artwork: [
+        { src: `${allmusic[music_index].img}.jpeg`, sizes: '512x512', type: 'image/jpeg' }
+      ]
+    });
+  }
+
   wavesurfer.once("ready", () => {
     if (!canAutoPlay) {
       playPauseBtn.classList.remove("play");
@@ -67,10 +79,12 @@ var songSlider = document.getElementById("song-slider");
 
 wavesurfer.on("ready", function () {
   songSlider.max = wavesurfer.getDuration();
+  totalTime.innerHTML = timecalculator(wavesurfer.getDuration());
 });
 
 wavesurfer.on("audioprocess", function () {
   songSlider.value = wavesurfer.getCurrentTime();
+  currentTime.innerHTML = timecalculator(wavesurfer.getCurrentTime());
 });
 
 songSlider.addEventListener("input", function () {
@@ -148,8 +162,10 @@ window.addEventListener("DOMContentLoaded", () => {
 playPauseBtn.addEventListener("click", () => {
   if (wavesurfer.isPlaying()) {
       wavesurfer.pause();
+      navigator.mediaSession.playbackState = "paused";
   } else {
       wavesurfer.play();
+      navigator.mediaSession.playbackState = "playing";
   }
   updatePlayPauseButton();
 
@@ -257,6 +273,29 @@ prevSongBtn.addEventListener("click", () => {
   });
 });
 
+// MediaSession API handlers
+if ('mediaSession' in navigator) {
+  navigator.mediaSession.setActionHandler('play', () => {
+    wavesurfer.play();
+    navigator.mediaSession.playbackState = "playing";
+    updatePlayPauseButton();
+  });
+
+  navigator.mediaSession.setActionHandler('pause', () => {
+    wavesurfer.pause();
+    navigator.mediaSession.playbackState = "paused";
+    updatePlayPauseButton();
+  });
+
+  navigator.mediaSession.setActionHandler('previoustrack', () => {
+    prevSongBtn.click();
+  });
+
+  navigator.mediaSession.setActionHandler('nexttrack', () => {
+    nextSongBtn.click();
+  });
+}
+
 volumeInput.addEventListener("input", () => {
   wavesurfer.setVolume(volumeInput.value);
   updateVolumeIcon();
@@ -292,19 +331,10 @@ volumeIcon.addEventListener("click", () => {
   }
 });
 
+// Add event listener to repeat button
 repeatBtn.addEventListener("click", () => {
   shouldRepeat = !shouldRepeat;
-  updateButtonState(".repeat-btn", shouldRepeat);
-  if (shouldRepeat) {
-    wavesurfer.un("finish");
-    wavesurfer.on("finish", () => {
-      setTimeout(() => {
-        wavesurfer.play();
-      }, 500);
-    });
-  } else {
-    wavesurfer.un("finish");
-  }
+  repeatBtn.classList.toggle("active", shouldRepeat);
 });
 
 function updateButtonState(buttonSelector, isActive) {
@@ -319,15 +349,6 @@ function updateButtonState(buttonSelector, isActive) {
   } else {
     button.classList.remove("active");
   }
-}
-
-function playNextSong() {
-  wavesurfer.un("finish", playNextSong); 
-  music_index++;
-  if (music_index >= allmusic.length) {
-    music_index = 0;
-  }
-  loadAndPlayMusic(music_index);
 }
 
 function loadAndPlayMusic(index) {
