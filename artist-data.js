@@ -124,6 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
+    // Reset the Play All Songs button
+  isPlayingAll = false;
+  playAndStopAllButton.innerHTML = 'PlayAll Songs';
+  navigator.mediaSession.playbackState = 'none';
   }
 
   function updateMediaSession(artist, title, image) {
@@ -149,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
           navigator.mediaSession.playbackState = "paused";
         }
       });
-      
+
       navigator.mediaSession.setActionHandler('previoustrack', null);
       navigator.mediaSession.setActionHandler('nexttrack', null);
     }
@@ -173,10 +177,24 @@ document.addEventListener('DOMContentLoaded', () => {
         currentIndex = 0;
         isPlayingAll = false;
         playAndStopAllButton.innerHTML = 'Play All Songs';
+        navigator.mediaSession.playbackState = 'none';
       }
     };
 
     playNextSong();
+
+      // Update Media Session metadata
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: 'Playlist',
+        artist: 'Various Artists',
+        album: 'Queued',
+        artwork: [
+          { src: 'path/to/your/default/image.jpg', sizes: '512x512', type: 'image/jpeg' } // Default artwork
+        ]
+      });
+      navigator.mediaSession.playbackState = 'playing';
+    }
   }
 
   function stopAllSongs() {
@@ -186,6 +204,11 @@ document.addEventListener('DOMContentLoaded', () => {
       song.pause();
       song.currentTime = 0;
     });
+
+      // Update Media Session playback state
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.playbackState = 'none';
+  }
   }
 
   let isPlayingAll = false;
