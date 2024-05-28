@@ -1,4 +1,4 @@
-#### **Using Code With the Developer permission is prohibited to contact check my profile**
+#### **Using Code Without the Developer permission is prohibited to contact check my profile**
 # Muisc-player 📻 [UNLIMITED MUSIC](https://darshan1005.github.io/Unlimited-Music/)
 #### Created By Darshan
 ![unlimited-music](https://github.com/darshan1005/Mini-Music-player/assets/114302987/31f78077-50e7-4617-9901-3553c75e2977)
