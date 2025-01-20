@@ -119,39 +119,37 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     // Reset the Play All Songs button
     isPlayingAll = false;
-    playAndStopAllButton.innerHTML = "PlayAll Songs";
+    playAndStopAllButton.innerHTML = "PlayAll";
     navigator.mediaSession.playbackState = "none";
   }
 
   function updateMediaSession(artist, title, image) {
-    if ('mediaSession' in navigator) {
+    if ("mediaSession" in navigator) {
       navigator.mediaSession.metadata = new MediaMetadata({
         title: title,
         artist: artist,
-        album: isPlayingAll ? 'Playing All' : 'Single Track',
-        artwork: [
-          { src: image, sizes: '512x512', type: 'image/jpeg' }
-        ]
+        album: isPlayingAll ? "Playing All" : "Single Track",
+        artwork: [{ src: image, sizes: "512x512", type: "image/jpeg" }],
       });
-  
-      navigator.mediaSession.setActionHandler('play', () => {
+
+      navigator.mediaSession.setActionHandler("play", () => {
         if (currentlyPlayingAudio) {
           currentlyPlayingAudio.play();
           navigator.mediaSession.playbackState = "playing";
         }
       });
-      navigator.mediaSession.setActionHandler('pause', () => {
+      navigator.mediaSession.setActionHandler("pause", () => {
         if (currentlyPlayingAudio) {
           currentlyPlayingAudio.pause();
           navigator.mediaSession.playbackState = "paused";
         }
       });
-      
+
       // Placeholder handlers for previous and next track
-      navigator.mediaSession.setActionHandler('previoustrack', () => {}); 
-      navigator.mediaSession.setActionHandler('nexttrack', () => {});
+      navigator.mediaSession.setActionHandler("previoustrack", () => {});
+      navigator.mediaSession.setActionHandler("nexttrack", () => {});
     }
-  }  
+  }
 
   function playAllSongs() {
     const songs = artistContainer.querySelectorAll("audio");
@@ -172,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         currentIndex = 0;
         isPlayingAll = false;
-        playAndStopAllButton.innerHTML = "PlayAll Songs";
+        playAndStopAllButton.innerHTML = "PlayAll";
         navigator.mediaSession.playbackState = "none";
       }
     };
@@ -195,11 +193,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isPlayingAll) {
       stopAllSongs();
       isPlayingAll = false;
-      playAndStopAllButton.innerHTML = "PlayAll Songs";
+      playAndStopAllButton.innerHTML = "PlayAll";
     } else {
       playAllSongs();
       isPlayingAll = true;
-      playAndStopAllButton.innerHTML = "StopAll Songs";
+      playAndStopAllButton.innerHTML = "StopAll";
     }
   }
 

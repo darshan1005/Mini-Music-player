@@ -13,14 +13,6 @@ let currentTime = document.querySelector(
 let totalTime = document.querySelector(".container .waveform-box .total-time");
 let nextSongBtn = document.querySelector(".container .btns-box .next-btn");
 let prevSongBtn = document.querySelector(".container .btns-box .prev-btn");
-let volumeIcon = document.querySelector(".container .volume-box .volume-icon");
-let volumeIncreBtn = document.querySelector(
-  ".container .volume-box .volume-incre"
-);
-let volumeDecreBtn = document.querySelector(
-  ".container .volume-box .volume-decre"
-);
-let volumeInput = document.querySelector(".container .volume-box input");
 let repeatBtn = document.querySelector(".container .repeat-btn");
 let searchInput = document.querySelector(".song-search");
 let songList = document.querySelector(".song-list ul");
@@ -67,25 +59,29 @@ let loadMusic = (index) => {
 
 // Function to update Media Session metadata
 function updateMediaSession() {
-  if ('mediaSession' in navigator) {
+  if ("mediaSession" in navigator) {
     navigator.mediaSession.metadata = new MediaMetadata({
       title: allmusic[music_index].name,
       artist: allmusic[music_index].artist,
       artwork: [
-        { src: `${allmusic[music_index].img}.jpeg`, sizes: '512x512', type: 'image/jpeg' }
-      ]
+        {
+          src: `${allmusic[music_index].img}.jpeg`,
+          sizes: "512x512",
+          type: "image/jpeg",
+        },
+      ],
     });
 
-    navigator.mediaSession.setActionHandler('play', () => {
+    navigator.mediaSession.setActionHandler("play", () => {
       wavesurfer.play();
       updatePlayPauseButton();
     });
-    navigator.mediaSession.setActionHandler('pause', () => {
+    navigator.mediaSession.setActionHandler("pause", () => {
       wavesurfer.pause();
       updatePlayPauseButton();
     });
-    navigator.mediaSession.setActionHandler('previoustrack', playPrevSong);
-    navigator.mediaSession.setActionHandler('nexttrack', playNextSong);
+    navigator.mediaSession.setActionHandler("previoustrack", playPrevSong);
+    navigator.mediaSession.setActionHandler("nexttrack", playNextSong);
   }
 }
 
@@ -136,7 +132,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const searchTerm = searchInput.value.toLowerCase();
     const filteredSongs = allmusic.filter((song) => {
       return (
-        song.name.toLowerCase().includes(searchTerm)||
+        song.name.toLowerCase().includes(searchTerm) ||
         song.artist.toLowerCase().includes(searchTerm)
       );
     });
@@ -147,13 +143,13 @@ window.addEventListener("DOMContentLoaded", () => {
     // Populate the song list with filtered songs
     filteredSongs.forEach((song, index) => {
       const listItem = document.createElement("li");
-      listItem.textContent = `${song.name} - ${song.artist}`
+      listItem.textContent = `${song.name} - ${song.artist}`;
       listItem.dataset.src = `${song.src}.mp3`;
       listItem.dataset.artist = song.artist;
       listItem.dataset.img = `${song.img}.jpeg`;
       listItem.dataset.index = allmusic.findIndex((item) => item === song);
       listItem.addEventListener("click", () => {
-        const clickedIndex = parseInt(listItem.dataset.index); 
+        const clickedIndex = parseInt(listItem.dataset.index);
         loadMusic(clickedIndex);
         wavesurfer.load(`${song.src}.mp3`);
         wavesurfer.setTime(0);
@@ -167,20 +163,20 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // Initialize the recent streaming list when the page loads
-  const recentSongs = JSON.parse(sessionStorage.getItem('recentSongs')) || [];
-    recentSongs.forEach(song => {
-        addToRecentStreaming(song.artist, song.song);
-    });
+  const recentSongs = JSON.parse(sessionStorage.getItem("recentSongs")) || [];
+  recentSongs.forEach((song) => {
+    addToRecentStreaming(song.artist, song.song);
+  });
 });
 
 // Event listener for play/pause button
 playPauseBtn.addEventListener("click", () => {
   if (wavesurfer.isPlaying()) {
-      wavesurfer.pause();
-      navigator.mediaSession.playbackState = "paused";
+    wavesurfer.pause();
+    navigator.mediaSession.playbackState = "paused";
   } else {
-      wavesurfer.play();
-      navigator.mediaSession.playbackState = "playing";
+    wavesurfer.play();
+    navigator.mediaSession.playbackState = "playing";
   }
   updatePlayPauseButton();
 
@@ -252,18 +248,6 @@ document.addEventListener("keydown", (event) => {
   } else if (key === "ArrowLeft") {
     // Left arrow key
     prevSongBtn.click();
-  } else if (key === "ArrowUp") {
-    // Up arrow key
-    volumeIncreBtn.click();
-  } else if (key === "ArrowDown") {
-    // Down arrow key
-    volumeDecreBtn.click();
-  } else if (key === "Enter") {
-    // Enter key
-    playPauseBtn.click();
-  } else if (event.shiftKey) {
-    // Shift key
-    volumeIcon.click();
   } else {
     console.log(`Key pressed: ${key}`);
   }
@@ -273,9 +257,9 @@ nextSongBtn.addEventListener("click", playNextSong);
 
 prevSongBtn.addEventListener("click", playPrevSong);
 
-// Function to play the next song 
+// Function to play the next song
 function playNextSong() {
-  wavesurfer.un("finish", playNextSong); 
+  wavesurfer.un("finish", playNextSong);
   music_index++;
   if (music_index >= allmusic.length) {
     music_index = 0;
@@ -284,7 +268,7 @@ function playNextSong() {
 }
 
 // Function to play the prev song
-function playPrevSong(){
+function playPrevSong() {
   music_index--;
   music_index < 0
     ? (music_index = songList.children.length - 1)
@@ -295,7 +279,7 @@ function playPrevSong(){
 
   wavesurfer.once("ready", () => {
     wavesurfer.play();
-    updatePlayPauseButton()
+    updatePlayPauseButton();
   });
 }
 
@@ -305,58 +289,23 @@ function loadAndPlayMusic(index) {
   wavesurfer.once("ready", () => {
     wavesurfer.play();
     updatePlayPauseButton();
-    wavesurfer.on("finish", playNextSong); 
+    wavesurfer.on("finish", playNextSong);
   });
 }
 
 // Media Session API event listeners
-if ('mediaSession' in navigator) {
-  navigator.mediaSession.setActionHandler('play', () => {
+if ("mediaSession" in navigator) {
+  navigator.mediaSession.setActionHandler("play", () => {
     wavesurfer.play();
     updatePlayPauseButton();
   });
-  navigator.mediaSession.setActionHandler('pause', () => {
+  navigator.mediaSession.setActionHandler("pause", () => {
     wavesurfer.pause();
     updatePlayPauseButton();
   });
-  navigator.mediaSession.setActionHandler('previoustrack', playPrevSong);
-  navigator.mediaSession.setActionHandler('nexttrack', playNextSong);
+  navigator.mediaSession.setActionHandler("previoustrack", playPrevSong);
+  navigator.mediaSession.setActionHandler("nexttrack", playNextSong);
 }
-
-volumeInput.addEventListener("input", () => {
-  wavesurfer.setVolume(volumeInput.value);
-  updateVolumeIcon();
-});
-
-volumeIncreBtn.addEventListener("click", () => {
-  volumeInput.stepUp();
-  wavesurfer.setVolume(volumeInput.value);
-  updateVolumeIcon();
-});
-
-volumeDecreBtn.addEventListener("click", () => {
-  volumeInput.stepDown();
-  wavesurfer.setVolume(volumeInput.value);
-  updateVolumeIcon();
-});
-
-function updateVolumeIcon() {
-  if (volumeInput.value == 0) {
-    volumeIcon.innerHTML = "volume_off";
-  } else {
-    volumeIcon.innerHTML = "volume_up";
-  }
-}
-
-volumeIcon.addEventListener("click", () => {
-  if (volumeInput.value == 0) {
-    volumeIcon.innerHTML = "volume_up";
-    wavesurfer.setVolume((volumeInput.value = 0.2));
-  } else {
-    volumeIcon.innerHTML = "volume_off";
-    wavesurfer.setVolume((volumeInput.value = 0));
-  }
-});
 
 function updateRepeatButtonState(buttonSelector, isActive) {
   console.log(
@@ -380,74 +329,77 @@ repeatBtn.addEventListener("click", () => {
 
 let download_music_index = 0;
 function downloadMusic() {
-
   if (download_music_index < 0 || download_music_index >= allmusic.length) {
-    console.error('Invalid music index');
+    console.error("Invalid music index");
     return;
   }
 
   const currentMusic = allmusic[download_music_index];
 
   if (!currentMusic || !currentMusic.src) {
-    console.error('Invalid music data');
+    console.error("Invalid music data");
     return;
   }
 
-  const fileURL = currentMusic.src + '.mp3';
+  const fileURL = currentMusic.src + ".mp3";
   const fileName = `${currentMusic.name} - ${currentMusic.artist}.mp3`;
 
-  const link = document.createElement('a');
+  const link = document.createElement("a");
   link.href = fileURL;
   link.download = fileName;
 
   link.click();
 }
 
-const downloadButton = document.querySelector('.download-button');
-downloadButton.addEventListener('click', downloadMusic);
+const downloadButton = document.querySelector(".download-button");
+downloadButton.addEventListener("click", downloadMusic);
 
-// Recent song 
+// Recent song
 const addToRecentStreaming = (artist, song) => {
-  const recentList = document.querySelector('.recent-music ul');
+  const recentList = document.querySelector(".recent-music ul");
   // Remove the song if it already exists in the recent list
-  const existingItem = [...recentList.children].find(item => {
+  const existingItem = [...recentList.children].find((item) => {
     return item.dataset.artist === artist && item.dataset.song === song;
   });
   if (existingItem) {
     recentList.removeChild(existingItem);
   }
   // Add the song to the beginning of the recent list
-  const listItem = document.createElement('li');
+  const listItem = document.createElement("li");
   listItem.textContent = `${artist} - ${song}`;
   listItem.dataset.artist = artist;
   listItem.dataset.song = song;
-  listItem.addEventListener('click', () => {
+  listItem.addEventListener("click", () => {
     const clickedArtist = listItem.dataset.artist;
     const clickedSong = listItem.dataset.song;
-    const clickedIndex = allmusic.findIndex(song => song.artist === clickedArtist && song.name === clickedSong);
+    const clickedIndex = allmusic.findIndex(
+      (song) => song.artist === clickedArtist && song.name === clickedSong
+    );
     if (clickedIndex !== -1) {
       loadAndPlayMusic(clickedIndex);
     }
   });
   recentList.insertBefore(listItem, recentList.firstChild); // Insert at the beginning
-}
+};
 
 const storeRecentSong = (artist, song) => {
-  if (typeof(Storage) !== 'undefined') {
-    let recentSongs = JSON.parse(sessionStorage.getItem('recentSongs')) || [];
-    const index = recentSongs.findIndex(item => item.artist === artist && item.song === song);
+  if (typeof Storage !== "undefined") {
+    let recentSongs = JSON.parse(sessionStorage.getItem("recentSongs")) || [];
+    const index = recentSongs.findIndex(
+      (item) => item.artist === artist && item.song === song
+    );
     if (index !== -1) {
       // If the song already exists, remove it
       recentSongs.splice(index, 1);
     }
     // Add the song to the beginning of the recent songs array
     recentSongs.unshift({ artist, song });
-    sessionStorage.setItem('recentSongs', JSON.stringify(recentSongs));
+    sessionStorage.setItem("recentSongs", JSON.stringify(recentSongs));
     addToRecentStreaming(artist, song);
   } else {
-    console.error('Session storage is not supported.');
+    console.error("Session storage is not supported.");
   }
-}
+};
 
 // Function to play a song at a given index
 function playSongAtIndex(index) {
@@ -464,8 +416,8 @@ function playSongAtIndex(index) {
 // Event listener for when a song is clicked from the song list
 songList.addEventListener("click", (event) => {
   if (event.target.tagName === "LI") {
-      const index = parseInt(event.target.dataset.index);
-      playSongAtIndex(index);
+    const index = parseInt(event.target.dataset.index);
+    playSongAtIndex(index);
   }
 });
 
@@ -473,14 +425,13 @@ songList.addEventListener("click", (event) => {
 nextSongBtn.addEventListener("click", () => {
   music_index++;
   if (music_index >= allmusic.length) {
-      music_index = 0;
+    music_index = 0;
   }
   playSongAtIndex(music_index);
 });
 
-
 // fav songs
-const favSongList = document.getElementById('fav-song-list');
+const favSongList = document.getElementById("fav-song-list");
 // Event listener for double-clicking on a song in the list
 songList.addEventListener("dblclick", (event) => {
   if (event.target.tagName === "LI") {
@@ -511,7 +462,9 @@ songList.addEventListener("dblclick", (event) => {
       }
 
       // Remove the song from the "Favourite Songs" list
-      const favSongItem = favSongList.querySelector(`li[data-index="${index}"]`);
+      const favSongItem = favSongList.querySelector(
+        `li[data-index="${index}"]`
+      );
       if (favSongItem) {
         favSongList.removeChild(favSongItem);
       }

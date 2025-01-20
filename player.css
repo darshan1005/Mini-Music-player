@@ -101,7 +101,6 @@ body {
     height: 21rem;
     background: #ffffff;
     overflow: hidden;
-    margin-top: 5px;
 }
 
 .container .music-head {
@@ -206,11 +205,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 40px;
 }
 
 .container .music-body .waveform-box #song-slider {
     all: unset;
-    width: 200px;
+    width: 300px;
     cursor: pointer;
     background: rgba(151, 168, 255, 0);
 }
@@ -300,9 +300,10 @@ body {
 }
 
 /* instructions */
-.container .music-body .instructions {
+.container .instructions {
     display: flex;
-    margin: 0 auto;
+    align-items: end;
+    justify-content: center;
     font-size: 10px;
     font-style: unset;
     font-weight: 700;
@@ -373,13 +374,22 @@ body {
 .artist-play-All {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.artist-container .select-artist-title {
+    padding: 0px 10px;
 }
 
 .playAndStopAllMusic {
-    width: 100%;
+    width: max-content;
     height: 46px;
+    padding: 0px 10px;
     font-size: large;
     font-weight: 600;
+    cursor: pointer;
+    background-color: white;
 }
 
 .artist-container::-webkit-scrollbar,
@@ -447,7 +457,6 @@ body {
     width: 100%;
     background: transparent;
     border: 1px solid white;
-    margin-top: 7px;
 }
 
 .fav-songs .fav-title {
@@ -721,73 +730,6 @@ body {
         display: flex;
         align-items: center;
     }
-
-    .playAndStopAllMusic {
-        width: 100%;
-        height: 46px;
-        font-size: large;
-        font-weight: 600;
-    }
-
-    .artist-container::-webkit-scrollbar,
-    .artist-list::-webkit-scrollbar {
-        display: none;
-    }
-
-    .artist-container .artist-list {
-        overflow-y: auto;
-        max-height: 23.1rem;
-    }
-
-    .artist-list ul {
-        list-style: none;
-        padding: 0;
-        margin-top: 8px;
-        max-height: 100%;
-    }
-
-    .artist-list ul li {
-        padding: 7px;
-        background-color: white;
-        font-weight: 600;
-        font-size: large;
-        margin-bottom: 7px;
-    }
-
-    .artist-list audio {
-        width: 100%;
-    }
-
-    .artist-list li {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-        gap: 5px;
-        padding: 10px;
-        background-color: #f4f4f4;
-        border-radius: 5px;
-        margin-bottom: 5px;
-    }
-
-    .artist-list li span {
-        flex-grow: 1;
-    }
-
-    .artist-image {
-        width: 100%;
-        height: 100px;
-        margin-bottom: 4px;
-        object-fit: cover;
-    }
-
-    .artist-list ul li {
-        transition: background-color 0.3s ease;
-    }
-
-    .artist-list ul li.playing {
-        background-color: #ffe6e6;
-    }
-
 
     /* Music List */
     .List-aside {
@@ -1151,7 +1093,6 @@ body {
         object-fit: cover;
         box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.589);
     }
-
 
     /* recent streaming */
     .recent-music {
